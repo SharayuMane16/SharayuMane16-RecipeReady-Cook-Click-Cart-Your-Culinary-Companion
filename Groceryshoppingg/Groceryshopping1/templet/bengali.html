@@ -1,0 +1,661 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 90%;
+    margin-left: 5%;
+    height: 30vh;
+    margin-top: 2vh;
+    display: block;
+}
+
+.meal-name{
+    padding: 1.5rem 0.5rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+   border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium;
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: left;
+    border-top: 3px solid;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  width: 95%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+}
+
+.column{
+  width: 20vw;
+}
+
+.row {
+  display: grid;
+  width: 96%;
+  margin-left: 2%;
+  grid-template-columns: repeat(3,auto);
+  justify-content: center;
+  list-style: none;
+  grid-gap: 3vw;
+  margin-top: 2vh;
+  margin-bottom: 8vh;
+}
+
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">West Bengal Food</h2>
+
+
+         <div class="row">
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/luchi.jpeg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3>Luchi</h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                  <h2>Luchi</h2>
+                                  <h3>Ingredients</h3>
+                                          <p>▢ 2 cups all purpose flour</p>
+                                          <p>▢ 2 tablespoon Ghee or 2.5 tablespoon oil</p>
+                                          <p>▢ water as required</p>
+                                          <p>▢ salt as required</p>
+                                          <p>▢ ghee or oil for deep frying</p>
+
+                                  <h3>Recipe</h3>
+                                          <p><b>Step1:</b> In a mixing bowl, add the flour, salt, ghee and a few tbsps of water.</p>
+                                          <p><b>Step2:</b> First mix everything with your hands so that the ghee or moyen incorporates very well in the mixture.</p>
+                                          <p><b>Step3:</b> Then knead the dough adding water as required. Knead to a smooth and soft dough.</p>
+                                          <p><b>Step4:</b> The kneading has to be done really well. Cover with a moist cloth and keep for a minimum of 30 mins to maximum 1 hour.</p>
+                                          <p><b>Step5:</b> Cover the dough with a moist kitchen napkin and let it rest for minimum 30 minutes at room temperature.</p>
+                                          <p><b>Step6:</b> Make lemon sized balls from the dough and keep them covered with the moist cloth.</p>
+                                          <p><b>Step7:</b> Apply some oil on the ball before rolling. The thing is if you use flour for rolling, it gets browned in the hot oil while frying and gets stuck to the fried breads.</p>
+                                          <p><b>Step8:</b> Now roll into a circle of 3-4 inches diameter. Its difficult to roll a Maida puri when oil is applied. So keep on rotating the Chakla or the rolling board. Evenly apply pressure to the rolling pin when rolling the luchi.</p>
+                                          <p><b>Step9:</b> Gently drop the poori in the hot oil and when it begins to puff up….. Gently nudge & apply pressure with a slotted spoon so as to puff the luchi completely. When the oil stops sizzling, it means one side is cooked.</p>
+                                          <p><b>Step10:</b> Turn the poori over and fry the other side. These maida pooris won’t become golden like the regular Whole wheat pooris.</p>
+                                          <p><b>Step11:</b> Now, remove and drain luchi on kitchen towels to remove excess oil.</p>
+                                          <p><b>Step12:</b> Serve luchi hot with Bengali aloo dum or any Bengali vegetable or lentil curry of your choice.</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/mochor.jpeg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3>Mochar Ghonto</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Mochar Ghonto</h2>
+                                        <h3>Ingredients</h3>
+                                                <p>▢ Banana flower (Vazhaipoo),cleaned and chopped</p>
+                                                <p>▢ Potato (Aloo) , cubed</p>
+                                                <p>▢ 1/4 teaspoon Turmeric powder (Haldi),divided,for soaking the plantain flower and the curry)</p>
+                                                <p>▢ 1/2 teaspoon Red Chilli powder</p>
+                                                <p>▢ 1/4 teaspoon Garam masala powder</p>
+                                                <p>▢ 1/2 teaspoon Sugar, Salt to taste</p>
+                                                <p>▢ 1/4 cup Fresh coconut , finely chopped</p>
+                                                <p>▢ Green Chillies , finely chopped for tempering</p>
+                                                <p>▢ 2 teaspoons Mustard oil</p>
+                                                <p>▢ 2 Bay leaf (tej patta)</p>
+                                                <p>▢ 1/2 teaspoon Cumin seeds (Jeera)</p>
+                                                <p>▢ 1/2 inch Ginger , grated</p>
+                                                <p>▢ 4 Garlic , grated</p>
+                                                <p>▢ 1 teaspoon Ghee,(clarified butter)</p>
+                                        <h3>Recipe</h3>
+                                                <p><b>Step1:</b> To begin making the Mochar Ghonto recipe, we will first clean the banana blossom/plantain flower.</p>
+                                                <p><b>Step2:</b> Oil your hands and start working with the banana flowers.</p>
+                                                <p><b>Step3:</b> Firstly, peel the purple layers and remove the florets. In each floret remove the longest string with a round head called the 'stamen' and the translucent thin cover.</p>
+                                                <p><b>Step4:</b> Now chop the florets finely and soak them in diluted buttermilk or plain water.</p>
+                                                <p><b>Step5:</b> Add turmeric and salt to the buttermilk and allow it to soak overnight (refrigerated) or at least for 30 minutes.</p>
+                                                <p><b>Step6:</b> To cook the banana blossom/plantain flower, drain the water from the florets.</p>
+                                                <p><b>Step7:</b> Pressure cook them in a cooker with 1/2 cup water upto 2 whistles. Once cool, gently mash using the back of a ladle.</p>
+                                                <p><b>Step8:</b> The next step is to make the curry. Heat a heavy bottomed pan with mustard oil over low flame.</p>
+                                                <p><b>Step9:</b> When the oil starts to smoke, add bay leaves and cumin seeds.</p>
+                                                <p><b>Step10:</b> Now add the grated ginger and garlic and saute for 30 seconds.</p>
+                                                <p><b>Step11:</b> Stir in the cubed potatoes, chilli powder, salt and 1/4 cup water let the potatoes cook for 5 to 7 minutes.</p>
+                                                <p><b>Step12:</b> Once the potatoes are cooked and dry add the cooked banana blossom, sugar and mix well. Cook covered for 2 minutes.</p>
+                                                <p><b>Step13:</b> Adjust salt and add the ground coconut-chilli mixture.</p>
+                                                <p><b>Step14:</b> Immediately add the garam masala powder, stir well over medium flame and switch off. Garnish with a teaspoon of ghee.</p>
+                                                <p><b>Step15:</b> Mochar Ghonto is a dry curry recipe and is often served along with steaming hot rice and ghee.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+             <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/shukto.jpeg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3>Shukto</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Shukto</h2>
+                                        <h3>Ingredients</h3>
+                                               <p>▢ 2 cup potato</p>
+                                               <p>▢ 1 cup banana</p>
+                                               <p>▢ 1 cup red potato</p>
+                                               <p>▢ 1 cup green beans</p>
+                                               <p>▢ 1 cup radish</p>
+                                               <p>▢ 1 teaspoon panch phoron</p>
+                                               <p>▢ 1 teaspoon powdered turmeric</p>
+                                               <p>▢ 1/2 cup ginger paste</p>
+                                               <p>▢ 1 diced ridge gourd</p>
+                                               <p>▢ salt as required</p>
+                                               <p>▢ 1 cup bitter gourd</p>
+                                               <p>▢ 1/2 cup carrot</p>
+                                               <p>▢ 1 1/2 cup eggplant/ brinjal</p>
+                                               <p>▢ 1 cup drumstick</p>
+                                               <p>▢ 1 cup milk</p>
+                                               <p>▢ 1/2 teaspoon mustard seeds</p>
+                                               <p>▢ 2 bay leaf</p>
+                                               <p>▢ 2 dry red chili</p>
+                                               <p>▢ 1 tablespoon caraway seeds</p>
+                                        <h3>Recipe</h3>
+                                        <p><b>Step1 :Chop all the vegetables</b></p>
+                                               <p>To make this popular Bengali recipe,cut all the vegetables in 1-inch pieces first and keep aside.</p>
+                                        <p><b>Step2: Stir fry the bitter gourd & prepare the shukto masala</b></p>
+                                               <p>Next, place a pan over medium flame and heat two tablespoons of oil in it. Add bitter gourd (karela) and fry until it becomes crispy. Keep the fried karela aside. Meanwhile, for preparing the shukto masala put 1 tablespoon of panch phoron, mustard seeds in a heated pan and make a thick paste of it.</p>
+                                        <p><b>Step3: Cook all the chopped veggies & add milk & water.</b></p>
+                                               <p>Heat the remaining oil in a pan and add ginger paste, bay leaves, caraway seeds, dry red chillies in it and fry the spices for a while. Finally, add all the chopped vegetables in the pan and add turmeric along with salt over the veggies. Mix all the ingredients together and add the required amount of milk along with water and cook over medium flame.</p>
+                                        <p><b>Step4: Add the fried bitter gourds & shukto paste.</b></p>
+                                               <p>Add fried bitter gourds to the mixture and stir gently. Finally, add the shukto masala paste and cook until all the vegetables are done.</p>
+                                        <p><b>Step5: Serve the shukto with rice.</b></p>
+                                               <p>Turn of the flame, serve your shukto with rice and enjoy with your family and friends.</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2 = document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2 = document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/patishaptaa.jpg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3>Patishapta</h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Patishapta</h2>
+                                        <h3>Ingredients</h3>
+                                               <p> ▢ 1 cup Refined flour / maida</p>
+                                               <p> ▢ 1/2 cup Sooji (semolina)</p>
+                                               <p> ▢ 1/4 cup Rice flour</p>
+                                               <p> ▢ 11 1/2 - 2 cups Milk</p>
+                                               <p> ▢ Oil</p>
+                                               <p> ▢ 3 cups Coconut / khoya, grated</p>
+                                               <p> ▢ 2 tbsp Sugar / date jagger</p>
+                                               <p> ▢ 3-4 Green cardamoms</p>
+
+                                            <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a wok mix grated coconut or khoya with sugar or jaggery and place it over low flame. If making with khoya, add little milk. </p>
+                                            <p><b>Step2:</b> Add cardamom in it.</p>
+                                            <p><b>Step3:</b> Keep stirring the mixture till it gets sticky. Keep aside to cool. The process will take 15-20 minutes.</p>
+                                            <p><b>Step4:</b> Take maida, sooji and rice flour in a bowl.</p>
+                                            <p><b>Step5:</b> Add milk. Mix it carefully not making any lumps. Keep the mixture for half an hour.</p>
+                                             <p><b>Step6:</b> Heat the non stick pan. Put a little oil. Pour a thin layer of the mixture on it and spread it quickly with the laddle..</p>
+                                             <p><b>Step7:</b> Put the filling lengthwise at the center of it and roll it. Wait till the colour is light brown.</p>
+                                            <p><b>Step8:</b> Place it on the plate. Serve hot or cold.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/baigunb.jpg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3 align="center">Baigun Bhajja</h3>
+                          <button id="myBtn4" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Baigun Bhajja</h2>
+                                        <h3>Ingredients</h3>
+                                               <p> ▢ 3 big eggplants</p>
+                                               <p> ▢ 1 Tbsp ginger-garlic paste</p>
+                                               <p> ▢ 2 tsp red chilli powder</p>
+                                               <p> ▢ 1 tsp turmeric powder</p>
+                                               <p> ▢ 1 tsp coriander powder</p>
+                                               <p> ▢ Salt to taste</p>
+                                               <p> ▢ Juice of 2 lemons</p>
+                                               <p> ▢ 2 onions, chopped</p>
+                                               <p> ▢ 4 green chillies, chopped</p>
+                                               <p> ▢ 1 ginger, chopped</p>
+                                               <p> ▢ 4 Tbsp fresh coriander, chopped</p>
+                                               <p> ▢ 1 tsp garam masala powder</p>
+                                               <p> ▢ 1 cup mustard oil</p>
+                                               <p> ▢ 1 tsp garam masala powder</p>
+                                               <p><b>For the tomato chutney:</b></p>
+                                               <p> ▢ 3 tomatoes</p>
+                                               <p> ▢ 1 tsp ginger, chopped</p>
+                                               <p> ▢ 1 tsp green chilli, chopped</p>
+                                               <p> ▢ 2 tsp coriander, chopped</p>
+                                               <p> ▢ Salt to taste</p>
+                                               <p> ▢ 1/2 tsp sugar</p>
+                                               <p> ▢ Juice of 1 lemon</p>
+                                               <p> ▢ 2 tsp mustard oil</p>
+                                         <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Take two eggplants and clean them well. Slice them in half inch thickness and marinate with ginger garlic paste, red chilli powder, turmeric powder, coriander powder, garam masala powder, salt and lemon juice (1 lemon) and keep it aside.</p>
+                                            <p><b>Step2:</b> Roast the remaining eggplant on cooking range till it is cooked properly.</p>
+                                            <p><b>Step3:</b> Once cooked, peel the skin and roughly chop the eggplant. Mix in chopped onion, green chilli, ginger, fresh coriander, salt and lemon juice (1 lemon)</p>
+                                            <p><b>Step4:</b> In a pan, heat some mustard oil on a medium flame and pan fry the marinated eggplant slices till they are cooked.</p>
+                                            <p><b>Step5:</b> Serve it hot with the roasted eggplant.</p>
+                                            <p><b>For the tomato chutney:</b></p>
+                                            <p><b>Step1:</b> Boil whole tomato and puree it nicely in mixie.</p>
+                                            <p><b>Step2:</b> Take out in a bowl and add chopped ginger, green chilli, coriander, salt, sugar, lemon juice (1 lemon) and mustard oil.</p>
+                                            <p><b>Step3:</b> Mix well and serve it with the bhajja.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/doimach.jpg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3 align="center">Doi Maach</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Doi Maach</h2>
+                                        <h3>Ingredients</h3>
+                                               <p>▢ 1 Kg Rohu or rawas or any freshwater fish (cut into steaks or pieces, washed)</p>
+                                               <p><b>For marination:</b></p>
+                                               <p>▢ 1/2 tsp Turmeric powder</p>
+                                               <p>▢ 3/4 tsp Red chilly powder</p>
+                                               <p>▢ Salt</p>
+                                               <p>▢ 2 tsp Mustard oil</p>
+                                               <p><b>For the curry:</b></p>
+                                               <p>▢ 2 tbsp Mustard oil</p>
+                                               <p>▢ 1 Bay leaf</p>
+                                               <p>▢ 1/2 inch Cassia</p>
+                                               <p>▢ 4 Cloves</p>
+                                               <p>▢ 4-5 Green cardamoms</p>
+                                               <p>▢ 1/2 tsp Cumin seeds</p>
+                                               <p>▢ 1/2 tsp 1/2 tsp turmeric powder</p>
+                                               <p>▢ 1 tsp Hot red chilly powder, medium</p>
+                                               <p>▢ 2 tsp Ginger garlic paste</p>
+                                               <p>▢ 1 Onion (ground to a paste)</p>
+                                               <p>▢ 1/2 kg Curd (whisked)</p>
+                                               <p>▢ To garnish Coriander leaves</p>
+                                               <p>▢ Salt</p>
+                                        <h3>Recipe</h3>
+                                               <p><b>For marination:</b></p>
+                                               <p><b>Step1:</b> Put the pieces of fish into a bowl and add the turmeric, chilly powder, salt and a teaspoon of mustard oil to help the spices adhere to the fish. Gently massage the spices into the fish.</p>
+                                               <p><b>Step2:</b> Cover and keep aside to marinate for 15 minutes.</p>
+                                               <p><b>Step3:</b>Now, whisk the curd well in another bowl and add the turmeric and red chilly powder. Keep aside.</p>
+                                                <p><b>To Fry the fish:</b></p>
+                                               <p><b>Step4:</b> Heat a medium sized frying pan till hot and add the 2 tablespoon of mustard oil. Heat well till the oil is smoking to burn off most of its pungency.</p>
+                                               <p><b>Step5:</b> Once hot, add the marinated fish pieces and fry them for a couple of minutes on each side till they are a golden brown around the edges and richly colored.</p>
+                                               <p><b>Step6:</b> When the fish is golden and 3/4 cooked through, remove them to a plate and keep aside.</p>
+                                               <p><b>Step6:</b> Heat the same pan with the lovely fishy mustard oil once again and when the oil is hot, add the bay leaf, cumin seeds and whole spices, saute on a medium flame until they are wonderfully fragrant and change color.</p>
+                                               <p><b>Step6:</b> Now add the onion paste and saute it till it's a light golden brown in color, add the ginger and garlic paste and cook the aromatic spice base with a little water until it's a rich but light golden in color and the oil has surface to the top.</p>
+                                               <p><b>Step6:</b> Turn down the heat to medium low and add the whisked curd and spice mixture to the pan, stir gently and simmer the curd gravy for 10 to 15 minutes or until the oil surfaces and the gravy is a lovely rich mustard-golden-yellow in color.</p>
+                                               <p><b>Step6:</b> Add some salt and stir through to combine well. Now, simply add the pieces of fried fish, along with all their resting juices in the plate to the gravy and simmer it for another 10 minutes to gently poach the fish to perfection.</p>
+                                               <p><b>Step6:</b> Once the oil has risen to the top and the fish if cooked perfectly, turn of the heat and check for a balance of flavor.</p>
+                                               <p><b>Step6:</b> Squeeze over some lime juice to lift the flavors with a real citrus kick for a lovely contrast of flavors along with a generous garnishing of fresh coriander leaves.</p>
+                                               <p><b>Step6:</b> Serve the doi maach with hot steamed rice.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5 = document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+</body>
+</html>

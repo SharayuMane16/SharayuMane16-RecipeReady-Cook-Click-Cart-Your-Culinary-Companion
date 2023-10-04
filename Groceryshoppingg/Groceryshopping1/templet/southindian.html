@@ -1,0 +1,626 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 90%;
+    margin-left: 5%;
+    height: 30vh;
+    margin-top: 2vh;
+    display: block;
+}
+
+.meal-name{
+    padding: 1rem 1rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium;
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+
+}
+
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">South Indian Food</h2>
+
+
+         <div class="row">
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/tomatorasamm.jpg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3><center>Tomato Rassam</center></h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                  <h2>Tomato Rassam</h2>
+                                  <h3>Ingredients</h3>
+                                           <p>▢ 25 grams Arhar dal (Split Toor Dal)</p>
+                                            <p>▢ 1 teaspoon Turmeric powder (Haldi)</p>
+                                            <p>▢ 1/2 cup Tamarind Water</p>
+                                            <p>▢ 5 Tomatoes , roughly chopped</p>
+                                            <p>▢ 2 cloves Garlic</p>
+                                            <p>▢ 1/2 teaspoon Cumin powder (Jeera)</p>
+                                            <p>▢ 1/2 teaspoon Coriander Powder (Dhania)</p>
+                                            <p>▢ 1/2 teaspoon Black pepper powder</p>
+                                            <p>▢ 1/4 teaspoon Red Chilli powder</p>
+                                            <p>▢ Salt to taste</p>
+                                            <p>▢ 4 Curry leaves</p>
+                                           <p> ▢ 1/4 teaspoon Mustard seeds (Rai/ Kadugu)</p>
+                                            <p>▢ 1/4 teaspoon Cumin seeds (Jeera)</p>
+                                            <p>▢ 1 tablespoon Ghee</p>
+                                            <p>▢ 1/4 teaspoon Asafoetida (hing)</p>
+                                            <p>▢ 2 sprig Coriander (Dhania) Leaves finely chopped</p>
+
+                                  <h3>Recipe</h3>
+                                            <p><b>Step1:</b> First cook the toor dal/ yellow split pea dal with 1 cup of water until it becomes very soft.</p>
+                                            <p><b>Step2:</b> When done, pour the dal into a bowl and whisk it, until it becomes nice and smooth. Set this aside.</p>
+                                            <p><b>Step3:</b> Puree the raw cut tomatoes in a blender and keep aside.</p>
+                                            <p><b>Step4:</b> Next, heat ghee in a pressure cooker on medium heat; add the mustard seeds, cumin seeds, garlic and curry leaves.</p>
+                                            <p><b>Step5:</b> When the mustard seeds begin to crackle, pour in the tomato puree, tamarind water, coriander powder, turmeric powder, cumin powder, asafoetida, pepper and chilli powder.</p>
+                                            <p><b>Step6:</b> Stir all the masalas together and pressure cook for for one whistle and turn off the heat.</p>
+                                            <p><b>Step7:</b> Once the pressure has released, open the cooker and add the toor dal. Adjust the consistency of the rasam, by adding 1-1/2 to 2 cups of water. Check the salt and spices and adjust according to taste.</p>
+                                            <p><b>Step8:</b> Give the rasam a brisk boil. Once it comes to a brisk boil, simmer the Thakali Rasam for 10 minutes on low heat, until you see the Thakali Rasam frothing up.</p>
+                                            <p><b>Step9:</b> Once you notice the Thakkali Rasam frothing up, turn off the heat. Finally, garnish the Tomato Rasam with freshly chopped coriander leaves.</p>
+                                            <p><b>Step10:</b> Serve the Thakali Rasam along with hot rice, topped with ghee and a Beetroot Curry or Chow-Chow Curry.</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/coconutt.jpeg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3>Coconut Rice</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Coconut Rice</h2>
+                                        <h3>Ingredients</h3>
+                                                <p>▢ 1.5 cups basmati rice (soaked for 30 minutes, preferably)</p>
+                                                <p>▢ 1 tbsp vegetable oil</p>
+                                                <p>▢ 1 cup coconut milk</p>
+                                                <p>▢ 1 tbsp mustard seeds</p>
+                                                <p>▢ 1 tbsp chana dal (Bengal gram dal)</p>
+                                                <p>▢ 2 tsp urad dal (Black gram dal)
+                                                <p>▢ 2 dry red chili peppers (or 1 tsp red pepper flakes. Adjust up or down based on your preference)</p>
+                                                <p>▢ ¼ cup raw cashews (chopped coarsely)</p>
+                                                <p>▢ 1 sprig curry leaves</p>
+                                                <p>▢ ¾ cup shredded coconut (unsweetened)</p>
+                                                <p>▢ Salt to taste</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a large saucepan, add the drained rice and the coconut milk along with 1 cup water and salt to taste.</p>
+                                            <p><b>Step2:</b> When the liquid begins to boil, cover the saucepan with a tight-fitting lid, lower heat to low, and let the rice cook 15 minutes.</p>
+                                            <p><b>Step3:</b> In a small skillet, heat half the oil and add the chana dal, half of the urad dal, and the red chili peppers. Roast until golden and then powder in a spice grinder or with a mortar and pestle.</p>
+                                            <p><b>Step4:</b> In the same small skillet, heat the remaining oil and add the mustard seeds.</p>
+                                            <p><b>Step5:</b> When they sputter, add the remaining urad dal, cashews and the curry leaves.</p>
+                                             <p><b>Step5:</b> Saute until the dal and cashews are lightly golden. Add the shredded coconut and continue to saute until the coconut starts to just turn a very light gold.</p>
+                                             <p><b>Step6:</b> Add this and the powdered dals to the rice and mix gently with a fork, taking care not to mash the rice. Add salt if needed and serve.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+             <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/bottlegourdd.jpg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3>Bottlegourd Curry</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Coconut Rice</h2>
+                                        <h3>Ingredients</h3>
+                                               <p>▢ 2 cups bottle gourd about 300 grams chopped</p>
+                                               <p>▢ 1 to 2 green chillies slit(optional)</p>
+                                               <p>▢ 1 spring curry leaves</p>
+                                               <p>▢ 1/4 tsp mustard</p>
+                                               <p>▢ 1/2 tsp cumin or jeera</p>
+                                               <p>▢ 1 tbsp oil</p>
+                                               <p>▢ 1 tsp chana dal or bengal gram or senaga pappu</p>
+                                               <p>▢ 1 tsp urad dal or skinned black gram or minapa pappu</p>
+                                               <p>▢ 1 to 2 tbsps peanut podi or idli podi</p>
+                                               <p>▢ 1 to 2 tbsps coconut grated fresh</p>
+                                               <p>▢ Salt to Taste</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b></p> Wash bottle gourd under running water.Peel the skin and chop to bite sized pieces.</p>
+                                            <p><b>Step2:</b> Pour oil to a wide heavy bottomed pan.Then add cumin,mustard, urad dal and chana dal.</p>
+                                            <p><b>Step3:</b> Fry till the dals turn golden.</p>
+                                            <p><b>Step4:</b> Then add curry leaves and chili.Fry till the leaves turn crisp.</p>
+                                            <p><b>Step5:</b> Add the bottle gourd, salt and turmeric.</p>
+                                             <p><b>Step5:</b> Fry on a medium to high flame for 3 to 5 mins, keep stirring to avoid burning.</p>
+                                             <p><b>Step6:</b> If the gourd is not tender or less juicy,cover the pan and cook till the gourd is cooked fully.If it is tender just continue to fry without covering till it is fully done.</p>
+                                            <p><b>Step7:</b> Do not over cook to a mushy texture.</p>
+                                           <p><b>Step8:</b> Add the vepudu karam and coconut.Stir well to mix.</p>
+                                           <p><b>Step9:</b> Serve the bottle gourd curry with rice and rasam or sambar. You can also serve with chapati.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2 = document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2 = document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/sambar.jpeg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3>Sambhar</h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Sambhar</h2>
+                                        <h3>Ingredients</h3>
+                                               <p> ▢ ½ cup toor dal</p>
+                                               <p> ▢ ½ tsp turmeric powder</p>
+                                               <p> ▢ 2 cups water</p>
+                                               <p> ▢ 10 drumstick pieces</p>
+                                               <p> ▢ ¼ onion (cubed)</p>
+                                               <p> ▢ ½ to mato (roughly chopped)</p>
+                                               <p> ▢ 7 pieces brinjal / eggplant</p>
+                                               <p> ▢ ½ carrot (chopped)</p>
+                                               <p> ▢ ½ potato (chopped)</p>
+                                               <p> ▢ ½ lemon sized tamarind</p>
+                                               <p> ▢ 1 tsp jaggery or sugar</p>
+                                               <p> ▢ 2 green chilli (slit)</p>
+                                               <p> ▢ salt to taste</p>
+                                               <p> ▢ ½ tsp turmeric powder</p>
+                                               <p> ▢ 2 tsp sambar powder (home made udupi style sambar powder)</p>
+                                               <p> ▢ 1 tbsp coconut oil / any cooking oil</p>
+                                               <p> ▢ 1 tsp mustard seeds</p>
+                                               <p> ▢ ¾ tsp urad dal</p>
+                                               <p> ▢ few curry leaves</p>
+                                               <p> ▢ pinch of hing</p>
+                                            <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Firstly, in a pressure cooker add ½ cup of toor dal with 2 cups of water. also add pinch of turmeric. pressure cook it for 5 whistles.</p>
+                                            <p><b>Step2:</b> Meanwhile, in a small bowl take small half lemon sized tamarind and soak in water.</p>
+                                            <p><b>Step3:</b> Also, prepare and chop veggies like carrot, eggplant, drumstick, onions and tomatoes.</p>
+                                            <p><b>Step4:</b> Now, in a large kadai take the tamarind water.</p>
+                                            <p><b>Step5:</b> To that add 1 tsp of jaggery/sugar along with green chill, salt and turmeric powder.</p>
+                                             <p><b>Step6:</b> Furthermore, add all the chopped vegetables to same mixture.</p>
+                                             <p><b>Step7:</b> Meanwhile, once the dal is cooked mash it well.</p>
+                                            <p><b>Step8:</b> After 10 minutes, the vegetables should be cooked properly.</p>
+                                           <p><b>Step9:</b> Now add the mashed toor dal and bring it to boil.</p>
+                                           <p><b>Step10:</b> Add 2 tsp of sambar powder.</p>
+                                           <p><b>Step11:</b> Mix the sambar powder and bring it to boil. </p>
+                                           <p><b>Step12:</b> Prepare the tempering by heating urad dal, mustard seeds, hing, curry leaves and red chillies. </p>
+                                           <p><b>Step13:</b> Add the tempering to the freshly prepared sambar. </p>
+                                           <p><b>Step14:</b> Finally, sambar is ready. </p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/pongall.jpg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3 align="center">Ven Pongal</h3>
+                          <button id="myBtn4" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Ven Pongal</h2>
+                                        <h3>Ingredients</h3>
+                                               <p> ▢ ½ cup toor dal</p>
+                                               <p> ▢ ½ tsp turmeric powder</p>
+                                               <p> ▢ 2 cups water</p>
+                                               <p> ▢ 10 drumstick pieces</p>
+                                               <p> ▢ ¼ onion (cubed)</p>
+                                               <p> ▢ ½ to mato (roughly chopped)</p>
+                                               <p> ▢ 7 pieces brinjal / eggplant</p>
+                                               <p> ▢ ½ carrot (chopped)</p>
+                                               <p> ▢ ½ potato (chopped)</p>
+                                               <p> ▢ ½ lemon sized tamarind</p>
+                                               <p> ▢ 1 tsp jaggery or sugar</p>
+                                               <p> ▢ 2 green chilli (slit)</p>
+                                               <p> ▢ salt to taste</p>
+                                               <p> ▢ ½ tsp turmeric powder</p>
+                                               <p> ▢ 2 tsp sambar powder (home made udupi style sambar powder)</p>
+                                               <p> ▢ 1 tbsp coconut oil / any cooking oil</p>
+                                               <p> ▢ 1 tsp mustard seeds</p>
+                                               <p> ▢ ¾ tsp urad dal</p>
+                                               <p> ▢ few curry leaves</p>
+                                               <p> ▢ pinch of hing</p>
+                                         <h3>Recipe</h3>
+                                            <p><b>Step1:</b>  Firstly, in a pressure cooker heat 1 tsp ghee.</p>
+                                            <p><b>Step2:</b> Add ½ cup rice, ½ cup moong dal and saute for a minute or until it turns aromatic. </p>
+                                            <p><b>Step3:</b> Further, add 4 cup water and ½ tsp salt. mix well. </p>
+                                            <p><b>Step4:</b> Cover and pressure cook for 5 whistles on medium flame.</p>
+                                            <p><b>Step5:</b> Once the pressure settles down, open the cooker and give a good mix. </p>
+                                            <p><b>Step6:</b> Furthermore, in a pan heat 2 tbsp ghee.</p>
+                                            <p><b>Step7:</b> Also add 1 tsp cumin, ½ tsp pepper, 1 inch ginger, 2 chilli, 10 cashew and pinch hing.</p>
+                                            <p><b>Step8:</b> Saute on low flame until cashew turns golden brown. </p>
+                                            <p><b>Step9:</b> Pour the tempering over cooked rice and dal mixture.</p>
+                                            <p><b>Step10:</b> Give a good mix, add more ghee if required.</p>
+                                            <p><b>Step11</b> Finally, serve ven pongal/khara pongal with coconut chutney and sambar.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/idiyappamm.jpg'%}" alt="" width="90%">
+                       <div class="meal-name">
+                          <h3 align="center">Idiyappam</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Idiyappam</h2>
+                                        <h3>Ingredients</h3>
+                                               <p>▢ 1 Cup Plain Rice Flour</p>
+                                               <p>▢ 1.5 Cups Water</p>
+                                               <p>▢ 1 Teaspoon Vegetable Oil</p>
+                                               <p>▢ 1/2 Teaspoon Salt</p>
+                                        <h3>Recipe</h3>
+                                               <p><b>Step1:</b> Take a pan and add in a cup of flour to the pan. Roast the flour on medium flame until the flour is very hot to the touch. Remove and set aside.</p>
+                                               <p><b>Step2:</b> Take a pressure cooker and add in 1.5 cups of water, a teaspoon of oil and half a teaspoon of salt. Cover and cook for one whistle. Remove the pressure manually.</p>
+                                               <p><b>Step3:</b> Immediately add in the roasted rice flour and mix well to combine. Cover the cooker, put the whistle on and let it rest for 15 minutes. Remember the stove is off. We are just resting the dough covered. Rest for 15 minutes.</p>
+                                               <p><b>Step4:</b> After 15 minutes, open the cooker and mix the dough. Prepare small oblong balls and load it in the idiyappam press. Press the idiyappam strings onto idli plates.</p>
+                                               <p><b>Step5:</b> Once the dough is pressed, transfer the plates to a steamer and steam the idiyappam for 10 minutes.</p>
+                                               <p><b>Step6:</b> After 10 minutes of steaming, rest the idli plates for 5 minutes before removing the idiyappam.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5 = document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+</body>
+</html>

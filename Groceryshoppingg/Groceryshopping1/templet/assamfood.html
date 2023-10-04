@@ -1,0 +1,572 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 100%;
+    display: block;
+}
+
+.meal-name{
+    padding: 1rem 1rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium
+
+
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+
+}
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">Assami Food</h2>
+
+
+         <div class="row">
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/kharr.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Matimahor khar</h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Matimahor khar</h2>
+                                        <h3>Ingredients</h3>
+                                            <p> ▢ 250 gm. split black lentils (urad dal)</p>
+                                            <p>▢ 1 medium sized bulb of garlic crushed</p>
+                                            <p>▢ 1 inch ginger thinnly sliced</p>
+                                            <p>▢ 2 green chillies 2 bay leaves</p>
+                                            <p>▢ 1 tbsp. of mustard oil 1 tsp. paanch phuron</p>
+                                            <p>▢ 1 cup of kol khar</p>
+                                            <p>▢ 1/2 tsp of black pepper</p>
+                                            <p>▢ Salt to taste ½ cup water</p>
+                                            <p>▢ Coriander for garnish.</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Wash and soak black(urad)dal for 2 to 3 hrs or overnight.Strain and keep aside.</p>
+                                            <p><b>Step2:</b> Make a mix of 1 tbsp of mustard oi and 2 tbsp of kol khaar and keep aside.</p>
+                                            <p><b>Step3:</b> Pressure cook the dal with 1 teaspoon salt and half a cup of khar for 2 whistles or until the lentils are tender but not overcooked.</p>
+                                            <p><b>Step4:</b> The khar added here helps in tenderizing the lentils.In a heavy pan, heat the mustard oil to smoking point .</p>
+                                            <p><b>Step5:</b> Temper the oil with paanch phuron, bay leaves, garlic and chillies. Sauté for a while, till the raw fragnance of the garlic disappears.</p>
+                                            <p><b>Step5:</b> Pour in the boiled dal and mix well. Fry the dal for a minute and add water to adjust the consistency if required..</p>
+                                            <p><b>Step6:</b> Add ginger slices and cook for another 3 to 5 mins.</p>
+                                            <p><b>Step7:</b> Add the mustard oil and khar mixture to the stew (this is optional but adding khar and mustard oil just elevates the flavour to another level).</p>
+                                            <p><b>Step8:</b> Stir well.Garnish with coriander (I prefer to use saw tooth coriander added while adding the sliced ginger).</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/masor-tenga2.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Masor Tenga</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Masor Tenga</h2>
+                                         <h3>Ingredients</h3>
+                                            <p>▢ 1 kilograms fish</p>
+                                            <p>▢ 4 kokum</p>
+                                            <p>▢ 1 teaspoon mustard seeds</p>
+                                            <p>▢ 4 green chilli</p>
+                                            <p>▢ 2 teaspoon salt</p>
+                                            <p>▢ 1 stalk coriander leaves</p>
+                                            <p>▢ 1/2 kilograms tomato</p>
+                                            <p>▢ 250 ml mustard oil</p>
+                                            <p>▢ 2 medium potato</p>
+                                            <p>▢ 1 tablespoon rice flour</p>
+                                            <p>▢ 2 teaspoon turmeric</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step 1:</b> The first step is to prepare the fish. Cut the fish in medium-sized pieces and wash it properly. Then mix the turmeric powder and a teaspoon of salt with the fish.</p>
+                                            <p><b>Step 2:</b> Deep fry the fish pieces in the mustard oil, until the pieces are crisp and brown. Fry the fish pieces in batches.</p>
+                                            <p><b>Step 3:</b> In the meanwhile, boil the tomatoes and potatoes so that both are tender and soft. Mash the tomatoes to get a puree.</p>
+                                            <p><b>Step 4:</b> Also boil the kokum in 500 ml of water to get a tangy sort-of water, which will be used in the curry. Chop the boiled potatoes in quarters.</p>
+                                            <p><b>Step 5:</b> Next, remove the oil from the kadhai in which the fish has been fried, leaving just a teaspoon of the oil in it.</p>
+                                            <p><b>Step 6:</b> To this, add the mustard seeds and slit green chilies and let these fry until the mustard seeds splutter and the chilies turn brown. Then add the chopped boiled potatoes keep stirring it, so that the potatoes do not burn. Fry for 2 minutes.</p>
+                                            <p><b>Step 7:</b> And further add dried kashmiri red chili and coconut.</p>
+                                            <p><b>Step 8:</b> Now, add the pureed tomatoes and the remaining salt in the kadhai. Let the pureed tomatoes simmer with the potatoes for 3 minutes. Then add the kokum water to this and stir it in. Bring this mixture to a boil.</p>
+                                            <p><b>Step 9:</b> Next, add the fried fish pieces to the mixture. Add a little water if required. Mix in a rice flour slurry in the curry to thicken it. Add chopped fresh coriander before turning off the flame.</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal1.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/oou1234.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Oou Khatta</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Oou Khatta</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 1 Oou/Aau (elephant apple)</p>
+                                            <p>▢  1 tsp cumin seeds, 1 tsp mustard seeds</p>
+                                            <p>▢ 2 dry red chillis, salt to taste</p>
+                                            <p>▢ 1 cup sugar, 1/2 tsp turmeric</p>
+                                            <p>▢ 1/3 tsp chilli powder</p>
+                                            <p>▢ 1/2 tsp roasted cumin-chilli powder</p>
+                                            <p> ▢ 1 tsp pancha phutana</p>
+                                            <p>▢ 3 tsp cooking oil, coriander/freshly grated coconut for garnishing.</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Pull away and cut the green petals of the oou(Need to be careful during this as the liquid that oozes out is quite slippery).Peel the outer skin and cut into long strips about 1 cm wide. Use a pestle or small stone to slightly crush the pieces.</p>
+                                            <p><b>Step2:</b> Grind the mustard and cumin seeds into a smooth paste..</p>
+                                            <p><b>Step3:</b> Cooking - Boil 3-4 cups of water with salt and turmeric. Add the crushed Oou pieces to this and boil for 5 mins. Drain off all the water and keep aside.(This takes care of the bitterness/astringency if any)</p>
+                                            <p><b>Step4:</b> Heat the oil in a wok. Add the pancha phutana and broken red chilli. Allow to splutter.</p>
+                                            <p><b>Step5:</b> Add the boiled Oou pieces to the wok and fry for 3-4 minutes. Add the mustard-cumin paste and fry for 1 minute. Add 2 cups of water along with salt, turmeric and chilli powder.</p>
+                                            <p><b>Step5:</b> Cover with a lid and allow to cook on medium flame for 10-15 minutes.(Keep checking in between and add more water if required)</p>
+                                            <p><b>Step6:</b> Add the sugar and cumin-chilli powder. Cook till the sugar dissolves into the gravy.</p>
+                                            <p><b>Step7:</b> Garnish with grated coconut/coriander leaves. Serve with Arwa bhata-Dalma or Bhata - Mutton Curry..</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2= document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2 = document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal2) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Aloo-Pitika1.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Aloo Pitika</h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Aloo Pitika</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 3 large potatoes</p>
+                                            <p>▢ 1 large onion</p>
+                                            <p>▢ 2 green chillies</p>
+                                            <p>▢ Juice of lemon</p>
+                                            <p>▢ Salt</p>
+                                            <p>▢ 1 tbsp Coconut oil or oil of choice</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step 1:</b> Pressure cook potatoes. Deskin and mash them well</p>
+                                            <p><b>Step 2:</b> Add finely chopped onions crushed green chillies, salt and lemon juice as per taste.</p>
+                                            <p><b>Step 3:</b> Finally drizzle with coconut oil and mix thoroughly.</p>
+                                            <p><b>Step 4:</b> Serve as side dish with rice or Roti.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/gooror-payash.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Gooror Payas</h3>
+                          <button id="myBtn4"class="myBtnn" >Get Recipe</button>
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Gooror Payas</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 1 cup rice</p>
+                                            <p>▢ 1 1/2 litre full cream milk/p>
+                                            <p>▢ 3/4 gm spice cardamom</p>
+                                            <p>▢ 11 sliced pistachios</p>
+                                            <p>▢ 3 tablespoon ghee</p>
+                                            <p>▢ 2/3 cup sugar</p>
+                                            <p>▢ 11 chopped cashews 11 sliced almonds</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> To prepare this yummy dessert recipe, rinse rice and soak it in 2 1/2 cups of water for 20 minutes and drain. Add ghee to the rice and keep it aside.</p>
+                                            <p><b>Step2:</b> Take a saucepan and pour milk into it and keep stirring. Then, turn the gas flame to medium-high and keep stirring.</p>
+                                            <p><b>Step3:</b> Once the milk starts reducing, turn the flame to low and add in the ghee mixed rice and simmer the milk and rice until it is reduced to almost half.</p>
+                                            <p><b>Step4:</b> Add sugar and cook for another couple of minutes.Then,add cardamom powder and stir well.Turn off the flame and garnish with cashews,almonds and pistachios.Serve warm or chilled.</p>
+                                            <p><b>Tips:</b> Don't add sugar to the hot boiling milk as it can often spoil the milk texture.To make the payesh rich in texture, you can replace regular sugar with dates jaggery.Adding condensed milk also give a thick and rich texture to your payesh.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/pitha3.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Pitha</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Pitha</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ Glutinous Rice / Bora daan or chawal : 3 cups</p>
+                                            <p>▢ Jaggery/ Gur : 200 grams</p>
+                                            <p>▢ Black Sesame Seeds / Til : 150 grams</p>
+                                            <p>▢ Water as required</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a big bowl, soak the rice in around 6 cups of water for 6-7 hours. Was and drain excess water by letting the water dry over a newspaper or muslin cloth for around 30 minutes. Make sure that the water is not completely dried off or do not leave the rice to dry in the sun or below the fan. Keep it in a cool dry paste.</p>
+                                            <p><b>Step2:</b> Now grind it carefully in a mixer grinder to get a fine powder. Traditionally the rice is pounded in a Ural or Dheki as known in Assamese. Make sure the grinder does not become too hot or else the stickiness of the glutinous rice will reduce and the pithas will fall apart. Keep the powder in a bowl covered with a wet muslin cloth until use.</p>
+                                            <p><b>Step3:</b> Dry roast the sesame seeds in a pan for 3-4 minutes. Grind it into a rough powder. Keep the Jaggery at room temperature and chop it finely. Mix the sesame seeds and jaggery and keep this filling aside.</p>
+                                            <p><b>Step4:</b> Heat a iron tawa or griddle and spread the semi wet rice flour over it to the size of Roti with the back of your hand. Put the stuffing in the middle.</p>
+                                            <p><b>Step5:</b> As soon as the rice flour gets firm, fold its sides to form a roll while cover the stuffing.Turn it over and heat lightly before taking it off from the fire. Likewise make the rest pithas. When done the pithas will be crunchy.</p>
+                                            <p><b>Step5:</b> You can store these pithas for 10-12 days in an air-tight container. Make sure you handle the pithas with utmost care or else it may break and fall apart. Serve with a cup of tea or coffee.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5= document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+</body>
+</html>

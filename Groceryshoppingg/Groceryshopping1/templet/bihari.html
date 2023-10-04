@@ -1,0 +1,608 @@
+{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 100%;
+    display: block;
+}
+
+.meal-name{
+    padding: 1rem 1rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium
+
+
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+
+}
+
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">Bihari Food</h2>
+         <div class="row">
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/littichokha.gif'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Litti chokha</h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                  <h2>Litti chokha</h2>
+                                  <h3>Ingredients</h3>
+                                  <h4>FOR OUTER PART OF LITTI OR BATI</h4>
+                                      <p>▢ 2 cups wheat flour</p>
+                                      <p>▢ 1/2 tsp carom seeds (ajwain)</p>
+                                      <p>▢ 2 tbsp of ghee</p>
+                                      <p>▢ 3/4 tsp salt</p>
+                                  <h4>FOR FILLING</h4>
+                                      <p>▢ 1 cup roasted gram (bhune chane) or sattu(if its available )</p>
+                                      <p>▢ 4-5 cloves Garlic grated</p>
+                                      <p>▢ 1 medium size onion finely chopped</p>
+                                      <p>▢ 1 Ginger grated</p>
+                                      <p>▢ 2 -3 Green chilies, finely chopped</p>
+                                      <p>▢ ½ cup coriander leaves finely chopped</p>
+                                      <p>▢ ½ tsp kalonji (onion seeds)</p>
+                                      <p>▢ 1 tsp carom seeds (ajwain)</p>
+                                      <p>▢ 1 tbsp lemon juice</p>
+                                      <p>▢ 2 stuffed red chilli pickle (if not available you can use any pickle)</p>
+                                      <p>▢ Salt for taste</p>
+                                  <h4>FOR CHOKHA</h4>
+                                      <p>▢ 2 medium-sized boiled potatoes</p>
+                                      <p>▢ 1 big rounded brinjal (baingan)</p>
+                                      <p>▢ 3 medium-sized tomatoes</p>
+                                      <p>▢ 4-5 garlic cloves (peeled)</p>
+                                      <p>▢ 2-4 finely chopped green chillies</p>
+                                      <p>▢ 1/2” peice of ginger grated</p>
+                                      <p>▢ 2 medium-sized onions finely chopped</p>
+                                      <p>▢ 1 tbsp finely chopped coriander (dhania)</p>
+                                      <p>▢ 2 tsp mustard oil</p>
+                                  <h3>Recipe</h3>
+                                  <h4>A)Preparing dough cover</h4>
+                                      <p>Step1:In a mixing bowl, take 2 cups whole wheat flour/atta (240 grams) and ¼ teaspoon salt. Also add 1 tablespoon ghee or oil.</p>
+                                      <p>Step2:Now add water in parts and knead to a smooth soft dough. I added ¾ cup water. Depending on the quality of flour, you can add ¾ to 1 cup water.</p>
+                                      <p>Step3:Knead till smooth and soft. Cover the dough and keep aside.</p>
+                                  <h4>B)Preparing stuffing for litti</h4>
+                                      <p>Step1:Now grind rosted gram to powder along black pepper (if sattu is not available ).</p>
+                                      <p>Step2:Take out mixture in a mixing bowl, add in all the spices and grated ginger, green chillies, coriander, lemon juice, and mix well. If it seems too dry, add a tsp of oil and few drops of water to it. The texture should be crumbly, Keep aside.</p>
+                                  <h4>C)Make Litti</h4>
+                                      <p>Step1:Now take medium-sized dough. Make pedas from each one.</p>
+                                      <p>Step2:Simply roll it like a small chapati, but don’t apply any extra flour to it.</p>
+                                      <p>Step3:Place 2 tsp filling on it, pinch it from all sides so that filling gets cover from all sides as shown in picture below.</p>
+                                      <p>Step4:Pinch the extra dough from top,shape it round like a ball.</p>
+                                  <h4>D)Make Chokha </h4>
+                                      <p>Step1:Boil the potatoes remove the skin and keep aside</p>
+                                      <p>Step2:Roast brinjal and tomatoes in the oven or on the gas stove on medium flame from both the sides untill it becomes soft. Peel of the burnt skin of the brinjal.</p>
+                                      <p>Step3:Mash boiled potatoes, brinjal along with garlic and tomatoes together.</p>
+                                      <p>Step4:Add finely chopped onion, coriander leaves, grated ginger salt, green chillies and mustard oil. Mix all the ingredients with hands properly.Chokha is ready.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/malpua.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Malpua</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Malpua</h2>
+                                        <h3>Ingredients</h3>
+                                             <p>▢ 1 cup all purpose flour</p>
+                                             <p>▢ 2 tablespoon khoya</p>
+                                             <p>▢ 1 teaspoon powdered green cardamom</p>
+                                             <p>▢ 2 tablespoon chopped pistachios</p>
+                                             <p>▢ 5 gm funnel seeds</p>
+                                             <p>▢ 1 1/2 cup refined oi</p>
+                                             <p>▢ 10 gm readymade rabri</p>
+                                             <p>▢ 1 1/2 cup sugar syrup</p>
+                                        <h3>Recipe</h3>
+                                             <p><b>Step1:</b> Add sugar, cardamom, saffron and water in a pan.Cook till the syrup is of one string consistency. Keep aside.</p>
+                                             <p><b>Step2:</b> Mix half of the warm milk and khoya in a bowl. Mix till khoya is combined.</p>
+                                             <p><b>Step3:</b> Add half of the flour and mix to make a smooth paste.</p>
+                                             <p><b>Step4:</b> Add the remaining flour and make a smooth paste.</p>
+                                             <p><b>Step5:</b> Now add sugar, fennel seeds, salt and baking powder and Mix well. Add the remaining milk and mix well.</p>
+                                             <p><b>Step5:</b> Now,Heat ghee in a shallow pan.</p>
+                                             <p><b>Step6:</b> Mix the batter and pour a small ladle full (approximately 2 tablespoon) in the hot ghee.(The ghee should not be too hot)</p>
+                                             <p><b>Step7:</b> Simmer the heat to low and fry the malpua on both the sides till golden brown.</p>
+                                             <p><b>Step8:</b> Remove from ghee and dip in the sugar syrup for 2 minutes. Serve hot as such or with Kesar Rabdi.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/chandrakala.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Chandrakala/ Pedakiya</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                  <h2>Chandrakala/ Pedakiya</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 1 cup all purpose flour</p>
+                                            <p>▢ 1 tbsp ghee</p>
+                                            <p>▢ Pinch salt</p>
+                                            <p>▢ Ghee for frying</p>
+                                            <p>▢ 4 tbsp Khoya</p>
+                                            <p>▢ 1 tbsp each cashew, almond and pistachio</p>
+                                            <p>▢ 1 tsp Cardamom powder</p>
+                                            <p>▢ 1 tbsp Sugar powder</p>
+                                            <p>▢ 4 tbsp Sugar for syrup</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b>&nbsp;Grind dry fruits in mixture.</p>
+                                            <p><b>Step2:</b>&nbsp;Add khaya to a pan and cook it for 2-3 minutes.</p>
+                                            <p><b>Step3:</b>&nbsp;Add dry fruits mixture and 1tsp cardamom powder.</p>
+                                            <p><b>Step4:</b>&nbsp;Let it cool. Add 1 tbsp sugar powder once cooled and mix well.</p>
+                                            <p><b>Step5:</b>&nbsp;Add 1 tbsp ghee and salt to flour. Knead dough with required water.</p>
+                                            <p><b>Step6:</b>&nbsp;Add sugar to water and prepare sugar syrup. Add kevra water and kesar to it.</p>
+                                            <p><b>Step7:</b>&nbsp;Roll small size roti add filling and cover it with other roti. Give it adequate shape.</p>
+                                            <p><b>Step8:</b>&nbsp;I made very small bite size Chandrakala.</p>
+                                            <p><b>Step9:</b>&nbsp;In a pan add ghee to fry the goodies. Fry it nicely till golden on medium flame.</p>
+                                            <p><b>Step10:</b>&nbsp;Dip all goodies in sugar syrup. Decorate with pistachio. Enjoy chandrakala..</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2 = document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2 = document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal2) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/dehrori.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3 align="center">Dehrori </h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Dehrori </h2>
+                                       <h3>Ingredients</h3>
+                                           <p>▢ 1 cup Granulated or coarsaly grind rice flour</p>
+                                           <p>▢ 1 cup granulated or coarsely grind wheat flour</p>
+                                           <p>▢ 2 cups (150 g) jaggery (gud)</p>
+                                           <p>▢ 1-1/2 cup curd(yogurt)</p>
+                                           <p>▢ 1 cup ghee for moiyan</p>
+                                           <p>▢ 300 ml ghee for frying</p>
+                                           <p>▢ 1/2 cup sliced coconut for garnishing</p>
+                                           <p>▢ 1 tsp cardamom powder</p>
+                                       <h3>Recipe</h3>
+                                           <p><b>Step1:</b>&nbsp;Take rice flour and wheat flour in bowl and add ghee in it and mix well.</p>
+                                           <p><b>Step2:</b>&nbsp;Take another bowl mix well jaggery and curd.Add cardamom powder.</p>
+                                           <p><b>Step3:</b>&nbsp;Then add into flour ghee mixture and mix well like loose mixture. Let this set the whole night/9 hour for fermentation.</p>
+                                           <p><b>Step4:</b>&nbsp;Heat pan/kadhai with ghee take a small balls of the fermented mixture and flatten by patting it and gently slide it into hot ghee.</p>
+                                           <p><b>Step5:</b>&nbsp;Deep fry the dumplings in ghee on medium heat until dehrori goes dark brown and add this to the jaggery syrup and let it soak.</p>
+                                           <p><b>Step6:</b>&nbsp;Served warm or cold in the serving plate garnish with coconut strips.</p>
+                                           <p><b>Step7:</b>&nbsp;Your delicious chhattisgarh recipe Dehrori is ready. We had it for over 3/4 days keeping it in the refrigerator.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/biharifishfry.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3 align="center">Bihari Fish Fry</h3>
+                          <button id="myBtn4" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Bihari Fish Fry</h2>
+                                         <h3>Ingredients</h3>
+                                             <p>▢ 6 Pieces rohu fish</p>
+                                             <p>▢ 3 1/2 tsp salt</p>
+                                             <p>▢ 3 tsp turmeric powder</p>
+                                             <p>▢ 2 tsp chilli powder</p>
+                                             <p>▢ 1 tbsp oil</p>
+                                             <p>▢ 2 green chillies,bay leaves</p>
+                                             <p>▢ 1 tbsp mustard seeds,black peppercorns,cumin seeds,fenugreek seeds</p>
+                                             <p>▢ 1/2 cup tomatoes, chopped</p>
+                                             <p>▢ 2 tbsp mustard oil</p>
+                                             <p>▢ 1 tsp garam masala</p>
+                                             <p>▢ 2 tsp coriander leaves</p>
+                                             <p>▢ 1/2 cup water</p>
+                                        <h3>Recipe</h3>
+                                             <p><b>Step1:</b>&nbsp;Take the pieces of rohu fish in a bowl, add 2 tsp of salt and turmeric powder each along with chilli powder and oil.</p>
+                                             <p><b>Step2:</b>&nbsp;Mash them with hands and keep aside for 15 minutes to marinate,</p>
+                                             <p><b>Step3:</b>&nbsp;Now, take garlic, green chillies, mustard seeds, black pepper corns, cumin seeds, whole red chillies and fenugreek seeds in a grinder. Along with it, add a tsp each of turmeric powder and salt along with tomatoes.</p>
+                                             <p><b>Step4:</b>&nbsp;Grind all the ingredients together to make a paste.</p>
+                                             <p><b>Step5:</b>&nbsp;Now take a pan and put mustard oil in it.</p>
+                                             <p><b>Step6:</b>&nbsp;Put the marinated fish in to the pan and fry it well.</p>
+                                             <p><b>Step7:</b>&nbsp;Now take the bay leaves and put in the pan along with the grinded paste.</p>
+                                             <p><b>Step8:</b>&nbsp;Saute and add ½ a tsp of salt to mix.</p>
+                                             <p><b>Step9:</b>&nbsp;Now put the fried fish into the paste. Mix well and add some water.</p>
+                                             <p><b>Step10:</b>&nbsp;Let it simmer for 5-10 minutes.</p>
+                                             <p><b>Step11:</b>&nbsp;Add garam masala and coriander leaves to the gravy. Stir well.Serve hot.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/chanadalpuri.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3 align="center">Chana Dal Puri</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2>Chana Dal Puri </h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 1/2 cup Chana dal</p>
+                                            <p>▢ 1 teaspoon Cumin seeds,Red Chilli powder,Coriander Powder</p>
+                                            <p>▢ 1/4 teaspoon Turmeric powder</p>
+                                            <p>▢ 1 tablespoon Coriander (Dhania) Leaves,chopped finely</p>
+                                            <p>▢ Salt,to taste</p>
+                                            <p>▢ Oil,to deep fry</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b>&nbsp; Heat 2 tbsps oil in a non stick pan.</p>
+                                            <p><b>Step2:</b>&nbsp; Add asafoetida and drained moong dal and sauté for 1-2 minutes, crushing the dal slightly with the back of the stirring spoon.</p>
+                                            <p><b>Step3:</b>&nbsp; Add coriander powder, cumin powder, chaat masala, ½ tsp red chilli powder and salt and stir till dry.</p>
+                                            <p><b>Step4:</b>&nbsp; Transfer into a bowl and set aside to cool.</p>
+                                            <p><b>Step5:</b>&nbsp;Place wheat flour in a bowl, add salt, remaining red chilli powder, ginger paste, coriander leaves and 1 tbsp oil and mix.</p>
+                                            <p><b>Step6:</b>&nbsp;Add sufficient water and knead into a stiff dough.</p>
+                                            <p><b>Step7:</b>&nbsp;Rest the dough covered with a damp cloth for about 15 minutes. Heat sufficient oil in a kadai.</p>
+                                            <p><b>Step8:</b>&nbsp;Divide the dough into lemon sized portions and roll into balls.</p>
+                                            <p><b>Step9:</b>&nbsp;Roll out into small puris and place a little of the dal stuffing in the centre.</p>
+                                            <p><b>Step10:</b>&nbsp;Gather the edges and seal. Dust with dry flour and roll out into small thick puris.</p>
+                                            <p><b>Step11:</b>&nbsp;Slide the puris into hot oil and deep fry till golden and crisp.</p>
+                                            <p><b>Step12:</b>&nbsp;Drain on absorbent paper and serve hot.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5 = document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+       </div>
+     </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+
+.heading{
+    text-align: center;
+    color:brown;
+    font-size: 2rem;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+
+}
+.about .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap:0.5rem;
+    align-items: center;
+}
+
+.about .row .image{
+    flex:1 1 25rem;
+    margin-left: 65px;
+}
+
+.about .row .image img{
+    width: 100%;
+
+}
+
+.about .row .content{
+    flex:1 1 40rem;
+    margin-left: 65px;
+}
+.about .row .content2{
+     margin-left: 65px;
+
+    </style>
+
+</head>
+<body>
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <h1  class="heading">Thalipeeth Recipe</h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img style=" border-radius: 10px;" src="{% static 'image/thalipeeth.jpg'%}" alt="">
+        </div>
+
+        <div class="content">
+            <h3 style="color:brown"> Recipe</h3>
+         <p>   Step1:Mix the  ingredients into a pliable dough. Divide into 4 equal sized balls.</p>
+         <p>   Step2:Heat a cast iron tava.</p>
+         <p>   Step3:Place a piece of parchment on your work surface.</p>
+         <p>   Step4:Place a ball of dough on it. Pat it down gently into a 5mm disc of about 10-15cm in diameter.
+         <p>   Step5:With your finger make a hole in the centre.Lift the thalipeeth togehter with the parchment, and flip it onto the hot skillet.</p>
+         <p>   Step5:Peel off the paper and set aside. It can be re-used.</p>
+         <p>   Step6:Drizzle a little oil around the edges of the disc on the skillet, and in the centre.</p>
+         <p>   Step7:Cover with a lid and allow to cook until golden. Flip and cook the other side as well.</p>
+         <p>   Step8:Serve with fresh cream or butter, a smear of hot thecha, and dahi.</p>
+
+
+        </div>
+
+    </div>
+
+<div class="row">
+    <div class="content2">
+        <h3 style="color:brown">Ingredients</h3>
+
+         <p>1 cup thalipeeth bhajani (recipe above)</p>
+         <p>1 medium onion (1/2 cup), chopped</p>
+         <p>2 or 3 green chillies, chopped fine</p>
+         <p>Freshly chopped coriander</p>
+         <p>1/2 tsp salt</p>
+         <p>1/3 cup water to knead</p>
+         <p>Peanut oil, for frying</p>
+
+    </div>
+
+</div></section>
+
+<!-- about section ends -->
+</body>
+</html>

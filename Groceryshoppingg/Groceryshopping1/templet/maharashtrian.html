@@ -1,0 +1,641 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 100%;
+    display: block;
+}
+
+.meal-name{
+    padding: 1rem 1rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium
+
+
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+
+}
+
+
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">Maharashtrian Food</h2>
+
+
+         <div class="row">
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/thalipeeth.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Thalipeeth</h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Thalipeeth</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 1 cup thalipeeth bhajani (recipe above)</p>
+                                           <p>▢ 1 medium onion (1/2 cup), chopped</p>
+                                           <p>▢ 2 or 3 green chillies, chopped fine</p>
+                                           <p>▢ Freshly chopped coriander</p>
+                                            <p>▢ 1/2 tsp salt</p>
+                                           <p>▢ 1/3 cup water to knead</p>
+                                           <p>▢ Peanut oil, for frying</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Mix the  ingredients into a pliable dough. Divide into 4 equal sized balls.</p>
+                                            <p><b>Step2:</b> Heat a cast iron tava.</p>
+                                            <p><b>Step3:</b> Place a piece of parchment on your work surface.</p>
+                                            <p><b>Step4:</b> Place a ball of dough on it. Pat it down gently into a 5mm disc of about 10-15cm in diameter.</p>
+                                            <p><b>Step5:</b> With your finger make a hole in the centre.Lift the thalipeeth togehter with the parchment, and flip it onto the hot skillet.</p>
+                                             <p><b>Step5:</b> Peel off the paper and set aside. It can be re-used.</p>
+                                             <p><b>Step6:</b> Drizzle a little oil around the edges of the disc on the skillet, and in the centre.</p>
+                                            <p><b>Step7:</b> Cover with a lid and allow to cook until golden. Flip and cook the other side as well.</p>
+                                           <p><b>Step8:</b> Serve with fresh cream or butter, a smear of hot thecha, and dahi.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Veg-kolhapuri2.jpg'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>Veg Kolhapuri</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Veg Kolhapuri</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ ½ medium sized potato (cut into thick pieces)</p>
+                                            <p>▢ 1 small carrot (cut into thick pieces)</p>
+                                            <p>▢ 5 beans (chopped)</p>
+                                            <p>▢ 1 cup gobi / cauliflower (florets)</p>
+                                            <p>▢ 2 cups water</p>
+                                            <p>▢ ½ tsp salt</p>
+                                            <p>▢ 1 tsp sesame seeds / til / ellu</p>
+                                            <p>▢ 1 tsp poppy seeds / khus khus / gasgase</p>
+                                            <p>▢ ½ tsp cumin seeds / jeera</p>
+                                            <p>▢ 1 tsp coriander seeds / daniya seeds</p>
+                                            <p>▢ 1 inch cinnamon stick / dalchini</p>
+                                            <p>▢ 2 cloves / lavang / lavanga</p>
+                                            <P>▢ 1 cardamom pod / elachi / ellaki</P>
+                                            <p>▢ 4 black pepper / kali mirch</p>
+                                            <p>▢ 3 dried kashmiri red chili</p>
+                                            <p>▢ 2 tbsp coconut (fresh / dry / desiccated)</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Firstly boil the vegetables (potato, carrot, beans, gobi) in 2 cups of water.</p>
+                                            <p><b>Step2:</b> Also add half tsp of salt while boiling vegetables.</p>
+                                            <p><b>Step3:</b> Mix well and boil for 10 minutes or till the vegetables are almost cooked and yet retain their shape.</p>
+                                            <p><b>Step4:</b> Meanwhile, when vegetables are cooking, prepare masala.</p>
+                                            <p><b>Step5:</b> In a large kadai dry roast, sesame seeds, poppy seeds, coriander seeds, cumin seeds.</p>
+                                            <p><b>Step6:</b> Also take cinnamon stick, cardamom pod, cloves, black pepper.</p>
+                                            <p><b>Step7:</b> And further add dried kashmiri red chili and coconut.</p>
+                                            <p><b>Step8:</b> Dry roast for 2 minutes on low to medium flame or till spices turn aromatic.</p>
+                                            <p><b>Step9:</b> Cool completely and blend the dry roasted masala to smooth powder without adding any water.keep aside.</p>
+                                            <p><b>Step10:</b> In a large kadai heat oil.</p>
+                                            <p><b>Step11:</b> Further, saute finely chopped onions till they turn translucent.</p>
+                                            <p><b>Step12:</b> Also add ginger-garlic paste and saute till the raw smell completely disappears.</p>
+                                            <p><b>Step13:</b> Then add tomato and saute well till they turn soft and mushy.</p>
+                                            <p><b>Step14:</b> Furthermore, add capsicum and saute slightly.</p>
+                                            <p><b>Step15:</b> Add turmeric and saute well.</p>
+                                            <p><b>Step16:</b> Also add prepared masala and salt to taste.</p>
+                                            <p><b>Step17:</b> Saute well till the oil separates from the masala.</p>
+                                            <p><b>Step18:</b> Further add boiled vegetables making sure to strain off the water completely.</p>
+                                            <p><b>Step19:</b> Saute well till all the vegetables combines well with masala.</p>
+                                            <p><b>Step20:</b> Additionally add 1 cup of water.</p>
+                                            <p><b>Step21:</b> Also add coriander leaves and give a good mix.</p>
+                                            <p><b>Step22:</b> Cover and simmer for 15 minutes till vegetables and masala cook completely.</p>
+                                            <p><b>Step23:</b> Further, mix well and garnish with few chopped coriander leaves.</p>
+                                            <p><b>Step24:</b> Finally, serve veg kolhapuri with tandoori roti or garlic naan.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal1.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Bhareli-Vangi.jpg'%}" alt="" width="100%">
+                       <div class="meal-name">
+                          <h3>Stuffed Brinjal/Bharali vangi</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Stuffed Brinjal/Bharali vangi</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 325 gms medium sized Brinjals/Baby Eggplant-slit and soaked in salted water</p>
+                                            <p>▢ 1 small=60 gms Onions-finely chopped</p>
+                                            <p>▢ 2 mid-sized=125 gms Tomatoes-finely chopped</p>
+                                            <p>▢ 1-tsp Mustard Seeds 1-tsp Cumin Seed</p>
+                                            <p>▢ ¼ th tsp Asafoetida Powder</p>
+                                            <p>▢ 1-tsp Turmeric Powder</p>
+                                            <p>▢ Salt, 10-12 Curry Leaves</p>
+                                            <p>▢ Cooking Oil</p>
+                                            <p>▢ 1 Cup=75 gms grated dry Coconut</p>
+                                            <p>▢ 1 small=60 gms Onions-finely chopped</p>
+                                            <p>▢ 3-tbsp Peanuts</p>
+                                            <p>▢ ¼ th Cup Fresh Coriander Leaves-with stems</p>
+                                            <p>▢ 2 Green Chilies</p>
+                                            <p>▢ 1-inch Ginger root</p>
+                                            <p>▢ 10-12 Cloves of Garlic</p>
+                                            <p>▢ 2-tsp Kashmiri red Chili Powder</p>
+                                            <p>▢ 1-tsp dry Coriander Powder</p>
+                                            <p>▢ 1½-tbsp Kala Masala</p>
+                                            <p>▢ 2-tbsp White Sesame Seeds 1-tbsp Niger Seeds</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> We will start with dry roasting of Peanuts in a Pan. Dry roast until Peanuts become brown in color. Peanuts become brown in 3-4 mins. Remove from pan.</p>
+                                            <p><b>Step2:</b> Now, we will roast ingredients for making Masala for this recipe. Add White Sesame Seeds in pan and roast until it becomes brown in color (2-3 mins). After Sesame Seeds, now roast Niger Seeds. We have roasted Niger Seeds for 2-3 mins on medium heat.</p>
+                                            <p><b>Step3:</b> Now dry roast grated dry Coconut in the pan until it becomes brown.</p>
+                                            <p><b>Step4:</b> Peel off the roasted peanuts and make a coarse powder (do not add water)</p>
+                                            <p><b>Step5:</b> Transfer remaining roasted ingredients- sesame seeds, Niger seeds and coconut to grinder. Add chopped Onions, Green Chilies, Ginger-Garlic and Coriander leaves with stem. Make a fine and thick masala paste. I have used ¼th cup water while grinding.</p>
+                                            <p><b>Step5:</b> Put Masala paste in a large bowl. Add dry Coriander Powder, Red Chili Powder and Kala Masala. Add Salt to taste and mix all the ingredients. Now, we will stuff this Masala in Brinjals. We have removed Brinjals from Salted water. Ensure it is slit along its length. (Do not cut it open completely).</p>
+                                            <p><b>Step6:</b> Stuff all the Brinjals with Masala. Brinjals are now stuffed and ready. We will use remaining masala paste in gravy.</p>
+                                            <p><b>Step7:</b> Heat 3-4 tbsp Cooking Oil in a pan. Now add Mustard Seeds, Cumin Seeds, Asafoetida Powder and Curry Leaves. Now add chopped Onions and fry until Onions become soft. After Onions have become soft in 4-5 mins, add chopped Tomatoes.</p>
+                                            <p><b>Step8:</b> Add Turmeric Powder and some Salt. Be careful while adding Salt. We have already added Salt to masala paste. Reduce the heat and cook covered.</p>
+                                            <p><b>Step9:</b> After 6 mins of covered cooking, tomatoes have become soft and mushy. Add stuffed brinjals and mix well. I have cleaned the blender jar with ½ cup water. Add this water in pan. Reduce heat and cook covered for 4-5 mins.</p>
+                                            <p><b>Step10:</b> We have cooked on low heat for 4-5 mins. Brinjals have changed its color and released some moisture in gravy. Add Masala paste to the pan and mix well.</p>
+                                            <p><b>Step11:</b> Now we will adjust the consistency of gravy. Add hot water. The consistency of this dish is slightly thicker so I am adding 1½ cups of hot water. Total water added in the recipe=2 Cups</p>
+                                            <p><b>Step12:</b> If you want to add some more salt, you can do it now. I am not adding any more salt. Let gravy boil on high heat. Reduce heat and cook covered until Brinjals are completely cooked.</p>
+                                            <p><b>Step13:</b> Uncover after 10 mins. Check if Brinjals are cooked. Some Brinjals are still not cooked. We will cook for few more mins. Cover and Cook. We have cooked for 5 more mins. Brinjals are now well cooked.</p>
+                                            <p><b>Step14:</b> Gravy has become slightly thick and will become more thick as it cools down. Add coarsely grounded peanuts and mix well.</p>
+                                            <p><b>Step15:</b> Bharli Vangi is now ready. Turn off the heat and serve hot.</p>
+                                            <p><b>Step16:</b> Bharli Vangi is ready and served with Ragi Bhakri. It can also be enjoyed with Jowar Bhakri, Rice flour Bhakri or with some steamed rice.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2= document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2 = document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal2) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Puran-Poli3.jpg'%}" alt="" width="100%">
+                       <div class="meal-name">
+                          <h3>Puran Poli</h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Puran Poli</h2>
+                                           <h3>Ingredients</h3>
+                                            <p>▢ 1 cup blanched chana dal</p>
+                                            <p>▢ 2 tablespoon ghee</p>
+                                            <p>▢ 1/2 teaspoon fennel seeds powder</p>
+                                            <p>▢ 1 cup all purpose flour</p>
+                                            <p>▢ salt as required</p>
+                                            <p>▢ 1/2 teaspoon refined oil</p>
+                                            <p>▢ 1 cup powdered jaggery</p>
+                                            <p>▢ 1 teaspoon powdered green cardamom</p>
+                                            <p>▢ 1 teaspoon nutmeg powder</p>
+                                            <p>▢ 1/4 teaspoon turmeric</p>
+                                            <p>▢ 1/4 cup water</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Prepare the filling for Puran Poli</p>
+                                            <p>Put a saucepan over medium flame and add ghee to it. Once the ghee is melted, add blanched dal in it. Roast for 2-3 minutes and then add jaggery, ginger powder, cardamom powder, fennel powder and nutmeg powder into it. Mix all the ingredients and cook the dal for another 2-3 minutes. Once done, turn off the flame and let it cool. Then mash the dal using a masher.</p>
+                                            <p><b>Step2:</b> Knead the dough</p>
+                                            <p>In a dough kneading plate, add all-purpose flour, turmeric, salt to taste and refined oil. Mix well and then add a little water at a time and knead to make a stiff dough. Divide the dough into 3 parts and keep it aside.</p>
+                                            <p><b>Step3:</b> Make Puran Polis</p>
+                                            <p>Take one part and press it a little to make space in the centre. Once done, take the chana-jaggery mixture and fill it in the centre. Close and shape again like a ball. Grease your hands a little and make roti with your hands. You can roll it out using a rolling pin too.</p>
+                                            <p><b>Step4:</b> Cook the Puran Polis</p>
+                                            <p>Put a tawa on medium flame and place the roti on it. Add 1/2 teaspoon ghee and cook well from both sides. Serve hot or pair with tea or coffee.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/misalpav.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Misal Pav</h3>
+                          <button id="myBtn4"class="myBtnn" >Get Recipe</button>
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Misal Pav</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>Misal curry</p>
+                                           <p>▢ 2 tablespoon oil</p>
+                                           <p>▢ ginger garlic,green chillies(1 teaspoon each)</p>
+                                           <p>▢ 1 onion chopped</p>
+                                           <p>▢ 1 cup tomato puree</p>
+                                           <p>▢ ½ teaspoon turmeric</p>
+                                           <p>▢ 1 teaspoon garam masala</p>
+                                           <p>▢2 teaspoon chilli powder or as per taste </p>
+                                           <p> ▢ 1 tablespoon coriander pdr </p>
+                                           <p>▢ 2 teaspoon salt or as per taste</p>
+                                           <p>▢ 2 cups sprouted moth beans</p>
+                                           <p>▢ Mix namkeen/fried indian snack for serving</p>
+                                           <p>▢ Pav/buns</p>
+                                           <p>▢ Garnish: Coriander,chopped onion and lemon juice</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Wash the sprouts and drain the excess water. Keep it aside.</p>
+                                            <p><b>Step2:</b>Heat oil in a pan. Add ginger, garlic and chilly, onions to it. Let it brown.</p>
+                                            <p><b>Step3:</b> Add tomato puree and cook for 8-10 mins.</p>
+                                            <p><b>Step4:</b> Add spices & cook for 5 minutes or until oil oozes out of the curry.</p>
+                                            <p><b>Step5:</b> Mix well and add 2 cups of water and let it come to a boil.</p>
+                                            <p><b>Step6:</b> Now, add sprouts to it and cook until the liquid is reduced to half.</p>
+                                            <p><b>Step7:</b> Cover and cook until water has reduced by half.Turn off the heat.</p>
+                                            <p><b>Step8:</b> Garnish with mix namkeen,coriander,juice and raw onions.Serve it with Pav or buns/Bread/Roti.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Modak2.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Ukdiche Modak</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Ukdiche Modak</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 75 gm rice flour</p>
+                                            <p>▢ 30 gm powdered jaggery</p>
+                                            <p>▢ 1 dash powdered green cardamom</p>
+                                            <p>▢ 1/2 coconut</p>
+                                            <p>▢ 20 gm shredded mixed dry fruits</p>
+                                            <p>▢ 10 gm ghee</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Prepare the filling for Ukadiche modak
+                                             To make this Maharashtrian speciality, take a bowl and add grated fresh coconut in it.
+                                                Add shredded dry fruits, powdered jaggery, powdered sugar and cardamom powder in the same bowl and mix well.</p>
+                                            <p><b>Step2:</b> Knead the dough
+                                             Now to prepare the dough for the modaks, add rice flour in a bowl. Make a well in the rice flour and in the centre pour some hot ghee.
+                                                Mix well and add little water to make a soft dough. Take small portions from the dough and roll them into small puris with the help of a rolling pin.</p>
+                                            <p><b>Step3:</b> Shape & steam the modaks
+                                             Now, put a tbsp of the already prepared coconut-dry fruit mixture in the centre of the poori.
+                                                Seal the edges of the dough using your hands. Shape the dough like a traditional modak. Repeat this and shape the remaining modaks. Place the modaks in the steamer and steam them for approximately 15-20 minutes.</p>
+                                            <p><b>Step4:</b> Serve your homemade Ukadiche modak!
+                                             Serve hot or cold to relish the inner stuffing of Ukadiche modaks.</p>
+                                            <p><b>Tips:</b> Try using fine rice flour when making ukadiche modak. If you can't find it, then you can use sieved regular rice flour.
+                                             Knead the dough until completely smooth. It should also remain warm while kneading.
+                                             Try to make the filling first and then knead the dough for ukadiche modak.</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5= document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+</body>
+</html>

@@ -1,0 +1,651 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 100%;
+    display: block;
+}
+
+.meal-name{
+    padding: 1rem 1rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium
+
+
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+.modal-content h1{
+    font-size: 1.4rem;
+    width: 400px;
+    height:40px;
+    margin: 20px;
+}
+
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+
+}
+
+</style>
+
+
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">Kashmiri Food</h2>
+
+
+         <div class="row">
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Mutton Rogan Josh.jfif'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Mutton Rogan Josh</h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Mutton Rogan Josh</h2>
+                                         <h3>Ingredients</h3>
+                                            <p>500 grams Mutton (medium-sized pieces)</p>
+                                           <p>Yogurt</p>
+                                           <p>Salt as per taste</p>
+                                           <p>Mustard Oil (you can use ghee instead of mustard oil)</p>
+                                            <p>Turmeric Powder</p>
+                                           <p>Red Chilli Powder</p>
+                                           <p>Fennel powder</p>
+                                            <p> Ginger powder</p>
+                                           <p>Asafoetida</p>
+                                            <p>Cumin seeds,</p>
+                                            <p>Cinnamon, Cloves</p>
+                                          <p>Peppercorns, & Cardamom</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Take medium-sliced meat in a pan and wash it properly with water.</p>
+                                            <p><b>Step2:</b> Heat oil in a pressure cooker and add cinnamon, bay leaves, green cardamom, cloves, salt, asafoetida, and meat together.</p>
+                                            <p><b>Step3:</b>Let the meat turns brown. After a few minutes, add a cup of water</p>
+                                            <p><b>Step4:</b> Add red chilli powder along with turmeric powder to the meat. Keep stirring for about a minute.</p>
+                                            <p><b>Step5:</b> Mix the curd nicely and add it into the pressure cooker.</p>
+                                             <p><b>Step5:</b> Add water, fennel powder, ginger powder, and pressure cook for 2 minutes.</p>
+                                             <p><b>Step6:</b> Peel & grind green and brown cardamom and add to the meat dish.</p>
+                                            <p><b>Step7:</b> Finally, sprinkle cumin powder and simmer for a minute.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/kasmiri saag.jfif'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>Kashmiri Saag</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Kashmiri Saag</h2>
+                                         <h3>Ingredients</h3>
+                                            <p>7 Tbsp Mustard oil</p>
+                                           <p>3 Brown cardamom</p>
+                                           <p>10 Kashmiri whole chillies</p>
+                                           <p>25 Whole garlic</p>
+                                            <p>250 gram Whole spinach</p>
+                                           <p>salt</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a pressure cooker add mustard oil, brown cardamom, kashmiri whole chillies, whole garlic, whole spinach (saag), little salt and water</p>
+                                            <p><b>Step2:</b> Put all of the above in a pressure cooker and let the spinach (saag) cook till 1 whistle.</p>
+                                            <p><b>Step3:</b> Serve the Kashmiri Saag steaming hot.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal1.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                       <img src="{% static 'image/Khatte Baingan.jfif'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>Khatte Baingan</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Kashmiri khatte baingan</h2>
+                                         <h3>Ingredients</h3>
+                                            <p>  3 Tbsp mustard oil</p>
+                                            <p>1 cinnamon stick</p>
+                                            <p>1 Tbsp cumin seeds (zeera)</p>
+                                             <p>1 Tbsp kashmiri red chillies</p>
+                                            <p>1/2 tsp asafoetida (hing)</p>
+                                             <p>1/2 tsp turmeric powder (haldi)</p>
+                                             <p>1/2 tsp coriander powder (sookha dhaniya powder)<p/>
+                                             <p>Salt, to taste</p>
+                                            <p>1 Tbsp dry ginger powder (saunth powder)</p>
+                                            <p>2 sliced onion</p>
+                                            <p>5 long brinjals</p>
+                                             <p>1 sliced tomato</p>
+                                            <p>1 tsp fennel seeds (saunf)</p>
+                                            <p>Coriander leaves, to garnish</p>
+                                           <p>1/2 lime</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a wok (kadai) add mustard oil, cinnamon, cumin seeds, green cardamoms, kashmiri red chilies, asafoetida powder, turmeric powder, coriander powder and little salt. Mix them well together and add little water.</p>
+                                            <p><b>Step2:</b> Add dry ginger powder and combine them together.</p>
+                                            <p><b>Step3:</b> Add sliced onion and brinjals. Fry them well together.</p>
+                                            <p><b>Step4:</b> Cover them and let the brinjals cook for 20 mintues.</p>
+                                            <p><b>Step5:</b> Add the sliced tomatoes, fennel seeds and little water.</p>
+                                             <p><b>Step5:</b> Let the tomatoes cook.</p>
+                                             <p><b>Step6:</b> Sprinkle some coriander leaves and lime.</p>
+                                            <p><b>Step7:</b> Serve the Kashmiri khatte baingan hot.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2 = document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2= document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal2) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Dum Aloo.jfif'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>Dum Aloo</h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Dum Aloo</h2>
+                                        <h3>Ingredients</h3>
+                                  <h1>for ▢aloo preparation:</h1>
+                                  <p>▢ 8 baby potatoes / aloo</p>
+                                  <p>▢ 2 cups water (or as required)</p>
+                                  <p>▢ ½ tsp salt</p>
+                                  <p>▢ 4 tbsp oil</p>
+                                  <p>▢ 1 tsp kashmiri chilli powder</p>
+                                  <p>▢ ½ tsp turmeric</p>
+                                  <h1>For masala paste / gravy:</h1>
+                                  <p>▢ 1 inch cinnamon stick (dalchini)</p>
+                                  <p>▢ 3 cloves</p>
+                                  <p>▢ 2 cardamom (elachi)</p>
+                                  <p>▢ ½ onion (thinly sliced)</p>
+                                  <p>▢ ¾ tsp ginger-garlic paste</p>
+                                  <p>v 1 large tomato (finely chopped)</p>
+                                  <p>▢ 10 cashews</p>
+                                  <h1>For dum aloo recipe:</h1>
+                                      <p>▢ 1 tsp oil</p>
+                                      <p>▢ ¾ tsp jeera / cumin seeds</p>
+                                      <p>▢ 1 - 1½ tsp chilli powder (adjust to your spice level)</p>
+                                      <p>▢ ¼ tsp turmeric powder</p>
+                                      <p>▢ ¾ tsp coriander powder</p>
+                                      <p>▢ salt to taste</p>
+                                      <p>▢ ¼ tsp cumin powder / jeera powder (optional)</p>
+                                      <p>▢ ¼ cup curd / yogurt</p>
+                                      <p>▢ 1 tsp kasuri methi / dry fenugreek leaves</p>
+                                      <p>▢ ¾ - 1 cup water (adjust to required consistency)</p>
+                                      <p>▢ few coriander leaves (finely chopped)</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a kadai, add a tsp of oil along with cumin seeds</p>
+                                            <p><b>Step2:</b> Once they splutter, add prepared masala paste and fry for 5-6 minutes.</p>
+                                            <p><b>Step3:</b> Now add spices like chilli powder, turmeric powder, coriander powder, cumin powder and salt to taste.</p>
+                                            <p><b>Step4:</b> Continue to fry till oil separates.</p>
+                                            <p><b>Step5:</b> Turn the flame to low and add curd. give a good mix.</p>
+                                             <p><b>Step5:</b> Add 1 cup of water or as required to adjust the consistency.</p>
+                                             <p><b>Step6:</b> Finally, add fried aloos and cook for 20 min.</p>
+                                            <p><b>Step7:</b> Lastly add some crushed kasuri methi.</p>
+                                           <p><b>Step8:</b> Garnish with coriander leaves and serve dum aloo hot with rice, chapathi or naan.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/kashmiri chicken  pulao.jfif'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>kashmiri chicken  pulao</h3>
+                          <button id="myBtn4"class="myBtnn" >Get Recipe</button>
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Kashmiri chicken  pulao.</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 500 Gram Rice</p>
+                                            <p>▢ 6-7 Chicken thighs</p>
+                                            <p>▢ 2 tsp Cumin seeds</p>
+                                            <p>▢ 2 tsp Cumin seeds</p>
+                                            <p>▢ 2 tsp Coriander powder</p>
+                                           <p>▢ 3-4 pods Green cardamom</p>
+                                             <p>▢ 3-4 sticks Cinnamon</p>
+                                            <p>▢ 2 tsp Mace</p>
+                                            <p>▢ Few Black pepper corns</p>
+                                            <p>▢ 5-6 cloves Garlic, chopped</p>
+                                             <p>▢ 5-6 Raisins</p>
+                                             <p>▢ 1 cup Yogurt</p>
+                                             <p>▢ 2 tbsp Desi ghee</p>
+                                             <p>▢ 1 cup Onion, sliced</p>
+                                             <p>▢ 2 tsp Coriander seed powder</p>
+                                             <p>▢ 1 tsp Red chilli powder</p>
+                                            <p>▢ 1 Ginger, finely chopped</p>
+                                             <p▢ >Cooking oil</p>
+                                             <p>▢ Salt & water</p>
+                                             <p>▢ 5-6 Green chillies, chopped</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Take rice, wash it properly and soak it in some water for 20 minutes.</p>
+                                            <p><b>Step2:</b> Take 6-7 chicken thighs and cut it into even size pieces</p>
+                                            <p><b>Step3:</b> Now wash these pieces well and drain the excessive water out, nicely.</p>
+                                            <p><b>Step4:</b> Take 1 cup of yogurt and add salt, 1 tsp red chilli powder, 1 tsp turmeric powder, 3 tsp coriander seed powder and 1 tsp black pepper powder</p>
+                                            <p><b>Step5:</b> Whisk the yogurt nicely and keep it aside.</p>
+                                             <p><b>Step6:</b> Heat 2 tbsp desi ghee in a pan, add 4-5 cloves of garlic, add 5-6 cloves, a cup of onions and saute.</p>
+                                             <p><b>Step7:</b> Now add the ginger and 5-6 green chillies and saute.</p>
+                                            <p><b>Step8:</b> Now add the whisked yogurt mixture and saute well.</p>
+                                           <p><b>Step9:</b> Cook for a few minutes and once you see the specs of fat coming up, add the chicken pieces.</p>
+                                           <p><b>Step10:</b> Add some salt too at this stage.</p>
+                                            <p><b>Step11:</b> Cook for a minute and add 2 cups of water and leave it to boil. Use enough of water because the rice will be cooked in this.</p>
+                                             <p><b>Step12:</b> Let it simmer for a couple of minutes. When the chicken is cooked, add the rice to the chicken and allow it to cook.</p>
+                                              <p><b>Step13:</b> Gently stir the rice because basmati after soaking becomes very fragile..</p>
+                                              <p><b>Step14:</b> Once the rice is cooked, serve hot.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/kashmiri sheermal.jfif'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>Kashmiri sheermal</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+
+                                     <h2>Kashmiri sheermal</h2>
+                                         <h3>Ingredients</h3>
+                                             <p>▢ 2 + 1/2 cup All purpose flour</p>
+                                             <p>▢ 1/4 th cup Milk powder</p>
+                                              <p>▢ 1 teaspoon dry active Yeast</p>
+                                              <p>▢ 2 tablespoons Sugar</p>
+                                               <p>▢ 1/2 teaspoon Salt</p>
+                                               <p>▢ 1/2 cup Milk+ more for brushing or rubbing</p>
+                                               <p>▢ 1 Egg or 1/4th cup plain Yoghurt for a vegetarian option</p>
+                                              <p>▢ 3 tablespoons soft Ghee</p>
+                                               <p>▢ 1 teaspoon Kewra water</p>
+                                               <p>▢ 2 teaspoons or as required white Sesame seeds</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Mix together yeast and sugar with 1/4th cup of warm water. Keep aside for 7-8 minutes to bloom the yeast.</p>
+                                            <p><b>Step2:</b> Mix together flour, milk powder and salt in a mixing bowl.</p>
+                                            <p><b>Step3:</b> When yeast mixture blooms add cardamom powder and kewra water..</p>
+                                            <p><b>Step4:</b> Also, add 1 egg or 1/4th cup of yoghurt to the yeast mixture.</p>
+                                            <p><b>Step5:</b> Make a hole in the centre of the flour mixture and add in the prepared yeast mixture.</p>
+                                             <p><b>Step6:</b> With your fingertips mix dry ingredient well with the wet ingredients.</p>
+                                             <p><b>Step7:</b> Add-in milk(normal temp) in batches and knead well to make a semi-hard dough.</p>
+                                            <p><b>Step8:</b> Spread the dough flat to a working surface.</p>
+                                           <p><b>Step9:</b> Spread soft ghee over the dough as shown in the picture.</p>
+                                            <p><b>Step10:</b> Now incorporate the ghee to the dough by dabbing and punching it with your hand.</p>
+                                           <p><b>Step11:</b> Fold the dough and again knead to well incorporate the ghee.</p>
+                                           <p><b>Step12:</b> Continue to knead to make a little soft and pliable dough.</p>
+                                           <p><b>Step13:</b> Cover the dough and keep aside for about 2 hours or until the dough becomes double in size.</p>
+                                           <p><b>Step14:</b> When the dough becomes double in volume, take out in a work surface and knead for few more minutes.</p>
+                                           <p><b>Step15:</b> Preheat oven at 200 degree C for 10 minutes.Take one ball and roll into a thick chapatiPrick the chapati or disk as shown in the picture.</p>
+                                           <p><b>Step16:</b> Rub 2 teaspoon of milk on the surface of the chapati, sprinkle some white sesame seeds and place it on the baking tray.</p>
+                                            <p><b>Step17:</b> Bake them in preheated oven at 200 degree C for about 15 minutes or until the breads become dark golden brown in colour.</p>
+                                            <p><b>Step18:</b> Sprinkle some milk and rub again the sheermal..</p>
+                                            <p><b>Step19:</b> Serve with a cup of tea, and if you can serve with Kashmiri pink tea then it will be perfect. These sheermal are little sweet, soft and crumbly delicious bread. You can store them in an airtight container for 2-3 days..</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5 = document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+</body>
+</html>

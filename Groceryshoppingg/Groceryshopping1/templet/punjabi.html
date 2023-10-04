@@ -1,0 +1,702 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 100%;
+    display: block;
+}
+
+.meal-name{
+    padding: 1rem 1rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium
+
+
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+.modal-content h1{
+    font-size: 1.4rem;
+    width: 400px;
+    height:40px;
+    margin: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+
+}
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">Punjabi Food</h2>
+
+
+         <div class="row">
+           <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/sarsoo.jfif'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>Sarso Ka Saag</h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal" class="modal">
+                              <div class="modal-content" style=" text-align: left">
+                                  <span class="close">&times;</span>
+
+                                     <h2 style=" text-align: center">Sarson Ka Saag</h2>
+                                        <h3>Ingredients</h3>
+                                               <p>▢ 750 gms sarson saag</p>
+                                               <p>▢ 250 gms palak saag<p>
+                                                <p>▢ 250 gms bathua saag<p>
+                                                <p>▢ 2 cups water with a pinch of salt<p>
+                                                <p>▢ 4 Green chilli<p>
+                                                <p>▢ 25 gms ginger<p>
+                                                 <p>▢ 2 Onions<p>
+                                                 <p>▢ 6 Garlic cloves<p>
+                                                 <p>▢ 100 gms ghee<p>
+                                                 <p>▢ 1/2 tsp red pepper powder<p>
+                                                 <p>▢ 1/2 tsp garam masala<p>
+                                                 <p>▢ 1/2 tsp coriander powder<p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Add the three saags, salt and water into pressure cooker & cook over low heat for 1 1/2 hours.</p>
+                                            <p><b>Step2:</b> Squeeze out saag and keep saag water aside. Mash saag in the cooker until coarsely ground, and add makki atta and stir.</p>
+                                            <p><b>Step3:</b> Put back saag water and a little fresh water & boil over slow fire.</p>
+                                            <p><b>Step4:</b> Add green chillies & ginger & cook till saag gets thick.</p>
+                                            <p><b>Step5:</b> For tadka, add chopped onions, ginger, garlic, red pepper powder; garam masala, dhania & saute until onions are light brown.</p>
+                                             <p><b>Step6:</b> Mix into saag & garnish with julienne of ginger fried in ghee.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/cholebatture.jfif'%}" alt="" style="width:102%">
+                       <div class="meal-name">
+                          <h3>CholeBatture</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content" style=" text-align: left">
+                                  <span class="close">&times;</span>
+
+                                     <h2 style=" text-align: center">CholeBatture</h2>
+                                        <h3>Ingredients</h3>
+                                        <h1>For the Chole</h1>
+                                            <p>▢ 2 cup chickpeas (channas)<p>
+                                           <p>▢ 2 tsp oil</p>
+                                           <p>▢ 1 Bbay leaf (tej patta)</p>
+                                            <p>▢ 1 Cinnamon stick (dalchini)</p>
+                                            <p>▢ 3-4 Cloves (laung)</p>
+                                            <p>▢ 1 tsp whole pepper corns (sabut kali mirch)</p>
+                                             <p>▢ 2 Black cardamom (badi elaichi)</p>
+                                             <p>▢ 1 tsp rurmeric powder (haldi)</p>
+                                             <p>▢ 1 tsp chili powder (lal mirch powder)</p>
+                                            <p>▢ 1 tsp coriander powder (dhaniya powder)</p>
+                                            <p>▢ 1 tsp cumin powder (zeera powder)</p>
+                                             <p>▢ 1 tsp cumin seeds (zeera)</p>
+                                             <p>▢ 1/2 tsp asafoetida (heeng)</p>
+                                              <p>▢ to taste salt</p>
+                                             <p>▢ 1 cup onions, chopped</p>
+                                              <p>▢ 1 cup tomatoes, chopped</p>
+                                              <p>▢ 1 tsp ginger, chopped</p>
+                                              <p>▢ 1 tsp garlic, chopped</p>
+                                            <p>▢ 1 tsp ajwain</p>
+                                             <p>▢ 1 tsp lime juice</p>
+                                            <p>▢ 1 green chili, chopped</p>
+                                            <p>▢ 1 Tea bag</p>
+                                            <p>▢ 1 tbsp butter</p>
+                                           <h1>For the bhaturas:</h1>
+                                            <p>▢ 2 cups maida (refined flour)</p>
+                                             <p>▢ 1/2 tsp yeast (dissolved for 10 minutes in luke warm water)</p>
+                                            <p>▢ 1/2 cup whole wheat flour</p>
+                                            <p>▢ A pinch of salt</p>
+                                            <p>▢ Water (to knead)</p>
+                                             <p>▢ Oil (for frying)</p>
+
+                                             {% for product1 in products1 %}
+                                              <p><strong>{{product1.name}}</strong></p>
+                                              <p>  {{product1.description}}</p>
+                                              <form action="/" method="POST">
+
+                                              <p> Price :Rs {{product1.price}}
+
+                                                  {% csrf_token %}
+                                                  <input type="text" name="product1" value='{{product1.id}}'>
+                                                  <input  type="submit" class="float-right btn btn-light border btn-sm" value="Add to Cart">
+                                                  </p>
+                                                  </form>
+                                             {% endfor %}
+
+                                        <h3>Recipe</h3>
+                                         <h1>Prepare Chole:</h1>
+                                            <p><b>Step1:</b> In a pan add oil, bay leaf, cinnamon, cumin seeds, cloves, whole pepper corns, green and black cardamom.</p>
+                                            <p><b>Step2:</b> After it gets brown add chopped onions and saute it. Now add chopped ginger and garlic</p>
+                                            <p><b>Step3:</b> Followed by turmeric, chili powder, coriander powder, cumin powder, asafoetida and salt, fry the ingredients together well.</p>
+                                            <p><b>Step4:</b> For de--glazing the pan add a little water</p>
+                                            <p><b>Step5:</b> Now add the chole (soaked overnight and pressure cooked) to the masala.</p>
+                                             <p><b>Step6:</b> After stirring well add tomatoes, little sugar and salt to the chole</p>
+                                            <p><b>Step7:</b> Now add ajwain, chopped green chilies and water for the base.</p>
+                                           <p><b>Step8:</b> To get the color in the chole, add a tea bag to the masala.</p>
+                                           <p><b>Step9:</b> Simmer the chole gently for an hour and cover it.</p>
+                                           <p><b>Step10:</b> Add lime juice and a dollop of butter to it.</p>
+                                             <h1>Prepare the Bhaturas:</h1>
+                                            <p><b>Step1:</b> Knead the whole wheat flour, maida and salt together with adequate amount of water.</p>
+                                            <p><b>Step2:</b> Sprinkle the yeast on top. Leave it for 2-3 hours for the yeast to work</p>
+                                            <p><b>Step3:</b> Divide it into equal portions. Roll out in an oval or round shape</p>
+                                            <p><b>Step4:</b> Deep fry till golden brown, like a puri.</p>
+                                            <p><b>Step5:</b> Serve.</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal1.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/dalmakhni.jfif'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Dalmakhi</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content"style=" text-align: left">
+                                  <span class="close">&times;</span>
+
+                                     <h2 style=" text-align: center">Dalmakhi</h2>
+                                         <h3>Ingredients</h3>
+                                            <p>▢ 2.0 Chopped Tbsp(25.0 gm) Tomato</p>
+                                           <p>▢ 2.0 Chopped Tbsp(12.0 gm) Onion</p>
+                                           <p>▢ 1.0 Tsp(4.0 gm) Cream</p>
+                                           <p>▢ 1.0 Number(0.3 gm) Bay Leaf</p>
+                                            <p>▢ 1/2 Tsp(0.17 gm) Kasuri Methi</p>
+                                           <p>▢ 1.0 Tsp(5.0 gm) Ginger Garlic Paste</p>
+                                           <p>▢ 1/4 Tsp(0.41 gm) Dhania Powder</p>
+                                            <p>▢ 1/4 Powder Tsp(0.54 gm) Red Chilly</p>
+                                             <p>▢ 1/4 Tsp(0.59 gm) Jeera</p>
+                                             <p>▢ 1/8 Tsp(0.29 gm) Haldi</p>
+                                              <p>▢ 1.0 Tbsp(12.0 gm) Butter</p>
+                                             <p>▢ 1/4 Tsp(1.0 gm) Salt</p>
+                                             <p>▢ 50.0 Ml(50.0 ml) Water</p>
+                                               <p>▢ 1/2 Tbsp(7.0 gm) Urad Dal</p>
+                                                <p>▢ 8.0 Ml(8.0 ml) Water</p>
+                                                 <p>▢ 0.31 Tbsp(5.0 gm) Rajma</p>
+                                              <p>▢ 4.0 Ml(4.0 ml) Water</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a kadai, heat 2 tbsp butter, add 1/4 tsp jeera, 1 bay leaf</p>
+                                            <p><b>Step2:</b> Saute, 1.5 tbsp chopped onions, 1 tsp ginger garlic paste , prepared tomato puree and saute them well</p>
+                                            <p><b>Step3:</b> Add cooked rajma and whole urad dal</p>
+                                            <p><b>Step4:</b> Add 1/8 tsp haldi, 1/4 tsp red chilly powder, 1/4 tsp dhania powder, 1/4 tsp salt, water as required</p>
+                                            <p><b>Step5:</b> Boil it for 3 minutes</p>
+                                             <p><b>Step5:</b> Add 1/2 tsp kasuri methi</p>
+                                             <p><b>Step6:</b> Cover and cook till done.</p>
+                                            <p><b>Step7:</b>  Add 2 tsp cream, mix it and serve it hot.</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2 = document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2= document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal2) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/butterchicken.jfif'%}" alt="">
+                       <div class="meal-name">
+                          <h3>ButterChicken</h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content" style=" text-align: left">
+                                  <span class="close">&times;</span>
+
+                                     <h2 style=" text-align: center">ButterChicken</h2>
+                                        <h3>Ingredients</h3>
+                                           <p>▢ 400 gms raw chicken</p>
+                                           <h1>For the Marinade:</h1>
+                                           <p>▢ 2 tsp red chilli powder</p>
+                                           <p>▢ 2 tsp ginger and garlic paste</p>
+                                           <p>▢ 2 tsp salt</p>
+                                           <p>▢ 2 tsp lemon juice</p>
+                                           <p>▢ 1/2 cup curd</p>
+                                           <p>▢ 1/2 tsp garam masala</p>
+                                           <p>▢ 1 tsp kasuri methi</p>
+                                           <p>▢ 2 tsp mustard oil</p>
+                                           <h1>For gravy:</h1>
+
+                                           <p>▢ tsp oil</p>
+                                           <p>▢ 2 to taste butter cubes</p>
+                                           <p>▢ 3 gram cloves</p>
+                                           <p>▢ 1 Cinnamon sticks, sliced</p>
+                                           <p>▢ 1 tsp mace</p>
+                                           <p>▢ 7 Cardamom</p>
+                                           <p>▢ 4 Tomatoes, chopped</p>
+                                            <p>▢ 1 tsp garlic</p>
+                                           <p>▢ 2 butter cubes</p>
+                                           <p>▢ 1 tsp ginger garlic paste</p>
+                                          <p>▢ 1 1/2 tsp red chilli powder</p>
+                                          <p>▢ 1 tsp kasuri methi</p>
+                                          <p>▢ 2 tsp honey</p>
+                                          <p>▢ 1 green chilli</p>
+                                          <p>▢ 2 tsp cardamom powder</p>
+                                           <p>▢ 1 tbsp cream</p>
+                                        <h3>Recipe</h3>
+                                  <h1>For marination:</h1>
+
+                                            <p><b>Step1:</b> In a mixing bowl, put raw chicken pieces and add salt, red chilli powder, ginger garlic paste and lemon juice. Mix well.</p>
+                                            <p><b>Step2:</b> Refrigerate for about 15-20 minutes.</p>
+                                            <p><b>Step3:</b> Now add curd to the refrigerated mix. Followed by salt, ginger garlic paste, red chilli powder, garam masala, kasuri methi and mustard oil. Mix well and refrigerate again for an hour.</p>
+                                            <p><b>Step4:</b> Roast the marinated chicken in an oven for about 30 minutes until it is three-fourth done.</p>
+                                           <h1>Prepare the chicken gravy:</h1>
+                                            <p><b>Step1:</b> Heat 2 tsp of oil in a pan with butter..</p>
+                                             <p><b>Step2:</b> Add cloves, cinnamon stick, mace and cardamom. Saute and then add chopped tomatoes, garlic and ginger. Mix well and then grind well.</p>
+                                             <p><b>Step3:</b> In another pan, heat another two cubes of butter, along with ginger garlic paste.</p>
+                                            <p><b>Step4:</b> Add the tomato puree made from the mixture. Now add red chilli powder, kasuri methi, honey and finally the roasted chicken pieces. Let it simmer.</p>
+                                           <p><b>Step5:</b> Add green chilli, cardamom powder and cream. Mix well</p>
+                                           <p><b>Step6:</b>Serve with a teaspoon of cream over.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/tandoori.jfif'%}" alt=""style="width:117%">
+                       <div class="meal-name">
+                          <h3>Tandoori</h3>
+                          <button id="myBtn4"class="myBtnn" >Get Recipe</button>
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content" style=" text-align: left">
+                                  <span class="close">&times;</span>
+
+                                     <h2 >Tandoori</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 3 tablespoons vegetable oil</p>
+                                           <p>▢ 1 teaspoon ground coriander</p>
+                                           <p>▢ 1 teaspoon ground cumin</p>
+                                           <p>▢ 1 teaspoon ground turmeric</p>
+                                            <p>▢ 1 teaspoon cayenne</p>
+                                           <p>▢ 1 tablespoon garam masala</p>
+                                           <p>▢ 1 tablespoon sweet (not hot) paprika</p>
+                                            <p>▢ 1 cup plain yogurt (can sub buttermilk)</p>
+                                             <p>▢ 2 tablespoons lemon juice</p>
+                                             <p>▢ 4 garlic cloves, minced</p>
+                                              <p>▢ 2 tablespoons minced fresh ginger</p>
+                                             <p>▢ 1 teaspoon salt</p>
+                                             <p>▢ 4 whole chicken leg quarters (drumsticks and thighs), skinless, bone-in</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> Heat the oil in a small pan over medium heat, then cook the coriander, cumin, turmeric, cayenne, garam masala and paprika, stirring often, until fragrant (approximately 2-3 minutes). Let cool completely.</p>
+                                            <p><b>Step2:</b> Whisk the cooled spice-oil mixture into the yogurt, then mix in the lemon juice, garlic, salt and ginger.</p>
+                                            <p><b>Step3:</b> Cut deep slashes (to the bone) in 3-4 places on the leg/thigh pieces. Just make 2-3 cuts if you are using separate drumsticks and thighs. Coat the chicken in the marinade, cover and chill for at least an hour (preferably 6 hours), no more than 8 hours.</p>
+                                            <p><b>Step4:</b> Prepare your grill so that one side is quite hot over direct heat, the other side cooler, not over direct heat. If using charcoal, leave one side of the grill without coals, so you have a hot side and a cooler side. If you are using a gas grill, just turn on one-half of the burners.
+                                              Use tongs to wipe the grill grates with a paper towel soaked in vegetable oil.</p>
+                                            <p><b>Step5:</b> Take the chicken out of the marinade and shake off the excess. You want the chicken coated, but not gloppy.</p>
+                                             <p><b>Step6:</b> Put the chicken pieces on the hot side of the grill and cover. Cook 2-3 minutes before checking..</p>
+                                            <p><b>Step7:</b> Turn the chicken so it is brown (even a little bit charred) on all sides.</p>
+                                           <p><b>Step8:</b> Move chicken to the cool side of the grill. Cover and cook for at least 20 minutes, up to 40 minutes (or longer) depending on the size of the chicken and the temperature of the grill. The chicken is done when its juices run clear.</p>
+                                            <p><b>Step9:</b> Let it rest for at least 5 minutes before serving. It’s also great at room temperature or even cold the next day</p>
+
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card">
+                   <div class="meal-img">
+                      <img src="{% static 'image/rajma.jpg'%}" alt="" style="width:100%">
+                       <div class="meal-name">
+                          <h3>Rajma</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content" style=" text-align: left">
+                                  <span class="close">&times;</span>
+
+                                     <h2 style=" text-align: center">Rajma</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 1 cup rajma</p>
+                                           <p>▢ 1 bay leaf</p>
+                                           <p>▢ 1 black cardamom</p>
+                                           <p>▢ 1 tsp salt</p>
+                                            <p>▢ 4 cup water</p>
+                                           <p>▢ 1 tbsp ghee / clarified butter</p>
+                                           <p>▢ 1 tsp cumin / jeera</p>
+                                          <p>▢ 1 inch cinnamon</p>
+                                           <p>▢ 5 cloves</p>
+                                           <p>▢ 1 onion (finely chopped)</p>
+                                           <p>▢ 1 tsp ginger garlic paste</p>
+                                            <p>▢ 1 chilli (slit)</p>
+                                           <p>▢ 2 cup tomato pulp</p>
+                                           <p>▢ ¼ tsp turmeric</p>
+                                            <p>▢ 1 tsp kashmiri red chilli powder</p>
+                                             <p>▢ 1 tsp coriander powder</p>
+                                             <p>▢ ½ tsp cumin powder</p>
+                                              <p>▢ ½ tsp aamchur / dry mango powder</p>
+                                             <p>▢ ½ tsp garam masala</p>
+                                             <p>▢ 1 tsp kasuri methi (crushed)</p>
+                                              <p>▢ 2 tbsp coriander (finely chopped)</p>
+
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b> In a large kadai heat 1 tbsp ghee and saute 1 tsp cumin, 1 inch cinnamon and 5 cloves.</p>
+                                            <p><b>Step2:</b> Add in 1 onion, 1 tsp ginger garlic paste, 1 chilli and saute until the onions turn golden brown.</p>
+                                            <p><b>Step3:</b> Now add 2 cup tomato pulp.</p>
+                                            <p><b>Step4:</b> Cover and cook for 10 minutes, or until the oil is separated..</p>
+                                            <p><b>Step5:</b> Further keeping the flame on low add ¼ tsp turmeric, 1 tsp chilli powder, 1 tsp coriander powder, ½ tsp cumin powder, ½ tsp aamchur, ½ tsp garam masala and ½ tsp salt..</p>
+                                             <p><b>Step5:</b> Saute until the spices turn aromatic.</p>
+                                             <p><b>Step6:</b> Add in cooked rajma and mix well.</p>
+                                            <p><b>Step7:</b> Cover and simmer for 15 minutes or until the curry thickens.</p>
+                                           <p><b>Step8:</b> Now add 1 tsp kasuri methi, 2 tbsp coriander and mix well.</p>
+                                             <p><b>Step9:</b> Finally, enjoy rajma with hot jeera rice.</p>
+
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5 = document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+</body>
+</html>

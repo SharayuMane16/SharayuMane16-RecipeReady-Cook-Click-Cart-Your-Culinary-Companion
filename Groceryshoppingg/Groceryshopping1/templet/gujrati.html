@@ -1,0 +1,594 @@
+{% load static %}
+{% load cartfilter %}
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+body{
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+.text{
+    opacity: 0.8;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+/*  */
+.container{
+    min-height: 100vh;
+}
+.meal-wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    text-align: center;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 5px;
+  margin: 10px;
+}
+
+
+/* Remove extra left and right margins, due to padding */
+.row {
+      margin-left:75px;
+     }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.meal-img img{
+    width: 100%;
+    display: block;
+}
+
+.meal-name{
+    padding: 1rem 1rem;
+    text-align:left;
+}
+.meal-name  h3{
+    font-size: 1.4rem;
+    text-align:center;
+
+}
+.meal-name h2{
+    font-size: 1.4rem;
+    text-align:center;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-style: solid;
+
+}
+
+.myBtnn{
+ text-decoration: none;
+    color: black;
+    background: hsla(89, 43%, 51%, 0.6);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  border: 2px solid #4CAF50;
+  border-style: dotted;
+  border-width: medium
+
+
+}
+.modal-content h2{
+    font-size: 1.4rem;
+    text-align:center;
+    border: double;
+    width: 970px;
+     height:40px;
+}
+
+.modal-content h3{
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid;
+    width: 200px;
+    height:40px;
+    margin: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card1 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+
+}
+.cart{
+ float: left;
+}
+
+</style>
+</head>
+<body>
+ <div class="container">
+     <div class="meal-wrapper">
+       <h2 class="title">Gujarati Food</h2>
+         <div class="row">
+           <div class="column">
+               <div class="card1">
+                   <div class="meal-img">
+                      <img src="{% static 'image/thepala.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Thepala</h3>
+                          <button id="myBtn" class="myBtnn" >Get Recipe</button>
+
+                           <div id="myModal" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2 align="center">Thepala</h2>
+                                  <h3>Ingredients</h3>
+                                       <p>▢ 1 cup wheat flour</p>
+                                       <p>▢ 1/2 bunch fenugreek leaves ( methi)</p>
+                                       <p>▢ 1 tablespoon yoghurt (curd)</p>
+                                       <p>▢ Salt as required</p>
+                                       <p>▢ 1/2 teaspoon grated ginger</p>
+                                       <p>▢ 1 tablespoon kasoori methi powder</p>
+                                       <p>▢ 2 chopped green chilli</p>
+                                       <p>▢ 4 tablespoon ghee</p>
+                                       <p>▢ 3/4 cup gram flour (besan)</p>
+                                       <p>▢ 1 cup water</p>
+
+                                  <h3 align="center"> Recipe</h3>
+                                       <p><b>Step1:&nbsp;</b> Prepare this dish, mix all-purpose flour, gram flour (besan), green chilli, kasoori methi powder, salt, ginger and fresh fenugreek in a bowl. </p>
+                                       <p><b>Step2:&nbsp;</b>Mix well all the ingredients and add curd in it, add water to knead it into a soft dough.</p>
+                                       <p><b>Step3:&nbsp;</b>Then, squeeze a little portion of the dough and roll it into a ball. Dust with some flour and roll prepare small balls from the dough and roll them into thin circles. Then take a tawa and heat it on medium flame.</p>
+                                       <p><b>Step4:&nbsp;</b>Grease it with ghee or oil and cook the Thepla on tawa. Cook from both sides till it turns golden, serve it hot with some mint chutney and your favourite cup of tea or coffee. </p>
+                                       <p><b>Step5:&nbsp;</b>You can also serve it with sweet delights like Jalebi or kheer to give a twist of flavours to your taste buds</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal = document.getElementById("myModal");
+
+                             // Get the button that opens the modal
+                              var btn = document.getElementById("myBtn");
+
+                            // Get the <span> element that closes the modal
+                               var span = document.getElementsByClassName("close")[0];
+
+                             // When the user clicks the button, open the modal
+                               btn.onclick = function() {
+                                modal.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal) {
+                                 modal.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card1">
+                   <div class="meal-img">
+                      <img src="{% static 'image/khandavi.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Khandvi</h3>
+                          <button id="myBtn1" class="myBtnn" >Get Recipe</button>
+
+                           <div id="myModal1" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2 align="center">Khandvi</h2>
+                                  <h3>Ingredients</h3>
+                                   <h4>FOR KHANDVI:</h4>
+                                            <p>▢ 1 Cup besan</p>
+                                            <p>▢ 3 tbsp curd</p>
+                                            <p>▢ Salt for taste</p>
+                                            <p>▢ 1 tsp turmeric</p>
+                                            <p>▢ 1 tsp red chilli powder</p>
+                                            <p>▢ A pinch of hing</p>
+                                            <p>▢ 3 cups water</p>
+                                            <p>▢ Oil to grease</p>
+                                   <h4>FOR THE TEMPERING:</h4>
+                                            <p>▢ 2 tsp oil</p>
+                                            <p>▢ 1 tsp mustard seeds</p>
+                                            <p>▢ 2 tsp sesame seeds</p>
+                                            <p>▢ 2 green chillies, chopped</p>
+                                            <p>▢ 2 tbsp water
+                                            <p>▢ For garnishing coriander leaves, red chilli powder</p>
+                                   <h3>Recipe</h3>
+                                            <p><b>Step1:&nbsp;</b>In a kadhai/ wok mix together besan, curd, salt, turmeric, hing, red chilli powder.</p>
+                                            <p><b>Step2:</b>&nbsp;Add 3 cups water gradually to make a batter.</p>
+                                            <p><b>Step3:</b>&nbsp;Now turn on the heat (medium flame) and start stirring the batter continuously. Once the batter reaches a thick consistency, turn off the heat.</p>
+                                            <p><b>Step4:</b>&nbsp;Grease the back side of the plates with a little oil and spread the thickened batter.</p>
+                                            <p><b>Step5:</b>&nbsp;Let them cool for 10 minutes. Cut strips with a knife and roll.</p>
+                                            <p><b>Step6:</b>&nbsp;For the tempering,In a small pan add oil, mustard seeds, sesame seeds, chillies and water. </p>
+                                            <p><b>Step7:</b>&nbsp; Pour over the khandvi.Garnish with coriander leaves and red chilli powder.</p>
+                                            <p><b>Step8:</b>&nbsp; Serve.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal1 = document.getElementById("myModal1");
+
+                             // Get the button that opens the modal
+                              var btn1 = document.getElementById("myBtn1");
+
+                            // Get the <span> element that closes the modal
+                               var span1 = document.getElementsByClassName("close")[1];
+
+                             // When the user clicks the button, open the modal
+                               btn1.onclick = function() {
+                                modal1.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span1.onclick = function() {
+                              modal1.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal1) {
+                                 modal1.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card1">
+                   <div class="meal-img">
+                      <img src="{% static 'image/dhokala1.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Dhokala</h3>
+                          <button id="myBtn2" class="myBtnn" >Get Recipe</button>
+
+                           <div id="myModal2" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2 align="center">Dhokala</h2>
+                                        <h3>Ingredients</h3>
+                                             <p>▢ 1 Cup gram flour (besan)</p>
+                                             <p>▢ 1 tbsp citric acid,oil</p>
+                                             <p>▢ 1 tbsp sugar</p>
+                                             <p>▢ Salt for taste</p>
+                                             <p>▢ A pinch of turmeric</p>
+                                             <p>▢ 1 tbsp fruit salt/ baking powder</p>
+                                             <p>▢ 1/2 tbsp mustard seeds</p>
+                                             <p>▢ 1 Dried red chilli</p>
+                                             <p>▢ 7-8 Curry leaves</p>
+                                        <h3>Recipe</h3>
+                                             <p><b>Step1:</b>&nbsp;In a bowl mix gram flour, citric acid, salt, sugar and turmeric. Add water and make it into a smooth batter with medium thick consistency.</p>
+                                             <p><b>Step2:</b>&nbsp;In a glass add the fruit salt or baking powder. Add water to it and pour this into the dhokla mixture. </p>
+                                             <p><b>Step3:</b>&nbsp;Grease the steaming tin with 2 drops of oil and pour the mixture into it. Steam for about 15-20 minutes or till cooked.</p>
+                                             <p><b>Step4:</b>&nbsp;In a pan, add oil, mustard seeds, curry leaves and red chillies. Let it splutter.</p>
+                                             <p><b>Step5:</b>&nbsp;Pour the tadka over the prepared dhokla.</p>
+                                             <p><b>Step6:</b>&nbsp;Cut into pieces and serve.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal2 = document.getElementById("myModal2");
+
+                             // Get the button that opens the modal
+                              var btn2 = document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                               var span2 = document.getElementsByClassName("close")[2];
+
+                             // When the user clicks the button, open the modal
+                               btn2.onclick = function() {
+                                modal2.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal2) {
+                                 modal2.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card1">
+                   <div class="meal-img">
+                      <img src="{% static 'image/fafda.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Jalebi Fafda</h3>
+                          <button id="myBtn3" class="myBtnn" >Get Recipe</button>
+
+                           <div id="myModal3" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2 align="center">Jalebi Fafda</h2>
+                                        <h3>Ingredients</h3>
+                                            <p>▢ 2 cups besan (chick-pea flour</p>
+                                            <p>▢ 1/4 tsp baking soda</p>
+                                            <p>▢ 1/4 tsp ajwain (thymol)</p>
+                                            <p>▢ 1/4 tsp haldi (turmeric)</p>
+                                            <p>▢ 1 Tbsp oil</p>
+                                            <p>▢ 1/2 tsp salt tsp or to taste</p>
+                                            <p>▢ Oil to deep-fry</p>
+                                        <h3>Recipe</h3>
+                                            <p><b>Step1:</b>&nbsp; Mix the besan, soda, ajwain, haldi, 1 tbsp oil and salt together.</p>
+                                            <p><b>Step2:</b>&nbsp; Add water and knead into a soft dough.</p>
+                                            <p><b>Step3:</b>&nbsp; Take a portion of the dough and place it on a greased surface.</p>
+                                            <p><b>Step4:</b>&nbsp; With base of your palm, drag the dough in a straight line, holding the dough at the starting point with the other hand.</p>
+                                            <p><b>Step5:</b>&nbsp; This will form a strip.</p>
+                                            <p><b>Step6:</b>&nbsp; Fry these strips over medium heat till crisp.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal3 = document.getElementById("myModal3");
+
+                             // Get the button that opens the modal
+                              var btn3 = document.getElementById("myBtn3");
+
+                            // Get the <span> element that closes the modal
+                               var span3 = document.getElementsByClassName("close")[3];
+
+                             // When the user clicks the button, open the modal
+                               btn3.onclick = function() {
+                                modal3.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span3.onclick = function() {
+                              modal3.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal3) {
+                                 modal3.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card1">
+                   <div class="meal-img">
+                      <img src="{% static 'image/Undhiyu.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Undhiyu</h3>
+                          <button id="myBtn4" class="myBtnn" >Get Recipe</button>
+
+                           <div id="myModal4" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2 align="center">Undhiyu</h2>
+                                        <h3>Ingredients</h3>
+                                              <p>▢ 2 tablespoons Ghee</p>
+                                              <p>▢ 1 tablespoon Ajwain</p>
+                                              <p>▢ 1/4 teaspoon Asafoetida </p>
+                                              <p>▢ 1/2 cup Flat Green Beans , cut into 1/2 inch size pieces</p>
+                                              <p>▢ 1/4 cup Sweet Potatoes , peeled and cubed</p>
+                                              <p>▢ 1/4 cup Elephant yam</p>
+                                              <p>▢ 1/4 cup Purple yam</p>
+                                              <p>▢ 1/4 cup Raw Banana , peeled and cubed</p>
+                                              <p>▢ 5 Small Brinjal (Baingan / Eggplant) , with 4 slits on top 5 Baby Potatoes , peeled, with 4 slits on top</p>
+                                              <p>▢ 1 cup Fresh coconut</p>
+                                              <p>▢ 1/2 cup Coriander (Dhania) Leaves , chopped</p>
+                                              <p>▢ 4 cloves Garlic</p>
+                                              <p>▢ 3 teaspoons Sesame seeds (Til seeds)</p>
+                                              <p>▢ 2 teaspoons Sugar</p>
+                                              <p>▢ 1 Lemon , juice extracted</p>
+                                              <p>▢Salt for taste</p>
+                                        <h3>Recipe</h3>
+                                              <p><b>Step1:</b>&nbsp;In a small bowl combine all the ingredients for the muthia adding very little water to make firm dough. Divide the dough into 15 small portions. Shape them into ovals and lightly press them down.</p>
+                                              <p><b>Step2:</b>&nbsp;To pan fry the methi muthia in a paniyaram pan; preheat the pan add oil into the cavities of the pan. Place the muthia in the cavities and drizzle a little more oil on the top. Flip and turn to cook the muthia on all sides. Pan fry the muthia until browned on all sides.</p>
+                                              <p><b>Step3:</b>&nbsp;You can alternatively steam the Muthia's - Prepare a steamer and place the muthia in the steamer’s colander and allow it to steam for 10 minutes on medium-high heat. After 10 minutes you will notice the colour has changed to golden yellow.T urn off heat; take the colander filled with muthia’s out of the steamer and keep aside.</p>
+                                              <p><b>Step4:</b>&nbsp;Add all the ingredients for the Masala into a mixer grinder, add 1/4 to 1/2 cup of water and grind to make a smooth paste.</p>
+                                              <p><b>Step5:</b>&nbsp;Fill the slit brinjals and baby potatoes with above filling mixture and keep aside. Keep the remaining filling aside.</p>
+                                              <p><b>Step6:</b>&nbsp;There are two ways you can do the Undhiyu, one in a pressure cooker, which is much faster and also in a pan where we slow cook the Undhiyu.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal4 = document.getElementById("myModal4");
+
+                             // Get the button that opens the modal
+                              var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                               var span4 = document.getElementsByClassName("close")[4];
+
+                             // When the user clicks the button, open the modal
+                               btn4.onclick = function() {
+                                modal4.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal4) {
+                                 modal4.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+          <div class="column">
+               <div class="card1">
+                   <div class="meal-img">
+                      <img src="{% static 'image/daldhokali.jpg'%}" alt="">
+                       <div class="meal-name">
+                          <h3>Dal Dhokali</h3>
+                          <button id="myBtn5" class="myBtnn" >Get Recipe</button>
+
+                           <div id="myModal5" class="modal">
+                              <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                     <h2 align="center">Dal Dhokali</h2>
+                                         <h3>Ingredients</h3>
+                                              <p>▢ Split pigeon peas 3/4 cup</p>
+                                              <p>▢ Whole wheat flour (atta) dough 3/4 cup</p>
+                                              <p>▢ Turmeric powder 3/4 teaspoon</p>
+                                              <p>▢ Gram flour (besan) 2 tablespoons</p>
+                                              <p>▢ Red chilli powder 3/4 teaspoon</p>
+                                              <p>▢ Asafoetida 2 pinches</p>
+                                              <p>▢ Peanuts 1 1/2 tablespoons</p>
+                                              <p>▢ Kokum petals 3</p>
+                                              <p>▢ Jaggery (gur) grated 1 1/2 teaspoon</p>
+                                              <p>▢ Cumin seeds 3/4 teaspoon</p>
+                                              <p>▢ Curry leaves 6-8</p>
+                                              <p>▢ Fresh coriander leaves chopped 2 tablespoons</p>
+                                         <h3>Recipe</h3>
+                                             <p><b>Step1:</b>&nbsp;Boil dal with one fourth teaspoon turmeric powder and salt in a Wonderchef Secura5 Pressure Cooker till completely cooked. Whisk till smooth.Transfer into a deep pan and heat.</p>
+                                             <p><b>Step2:</b>&nbsp;Take whole wheat flour in a bowl. Add gram flour, salt, one fourth teaspoon turmeric powder, half the red chilli powder, one pinch of asafoetida and oil and mix.</p>
+                                             <p><b>Step3:</b>&nbsp;Add sufficient water and knead into a stiff dough. Roll the dough into a ball, apply a little oil and roll out as thin as possible into an oval shape.</p>
+                                             <p><b>Step4:</b>&nbsp;Cut into thin strips. Add salt, remaining turmeric powder, peanuts, kokum, jaggery and the remaining red chilli powder to the dal and stir.</p>
+                                             <p><b>Step5:</b>&nbsp;Add the dough strips and let it cook on medium heat. Do not stir too much or the dough strips may break.</p>
+                                             <p><b>Step6:</b>&nbsp;Heat ghee in Wonderchef Inducta Pan, add mustard seeds, cumin seeds, broken dry red chillies, curry leaves and remaining asafoetida and add it to the dal.</p>
+                                             <p><b>Step7:</b>&nbsp;Let it simmer for five minutes. Garnish with coriander leaves and serve hot.</p>
+                              </div>
+                           </div>
+                         <script>
+                            // Get the modal
+                              var modal5 = document.getElementById("myModal5");
+
+                             // Get the button that opens the modal
+                              var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                               var span5 = document.getElementsByClassName("close")[5];
+
+                             // When the user clicks the button, open the modal
+                               btn5.onclick = function() {
+                                modal5.style.display = "block";
+                             }
+
+                             // When the user clicks on <span> (x), close the modal
+                              span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                              window.onclick = function(event) {
+                                if (event.target == modal5) {
+                                 modal5.style.display = "none";
+                              }
+                            }
+                         </script>
+                       </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+       </div>
+     </div>
+</body>
+</html>
